@@ -1,1149 +1,1245 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)file:///C:/Users/Acer/Downloads/AppTopo%20(1).html -->
+
 <html lang="ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AppTopo — Sistem Topografic Integrat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./AppTopo — Sistem Topografic Integrat_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg0:   #0d1117;
-  --bg1:   #161b22;
-  --bg2:   #1c2333;
-  --bg3:   #21262d;
-  --bg4:   #2d333b;
-  --line:  rgba(139,188,255,0.09);
-  --line2: rgba(139,188,255,0.18);
-  --line3: rgba(139,188,255,0.30);
-  --teal:  #00d4aa;
-  --teal2: #00b894;
-  --teal3: rgba(0,212,170,0.12);
-  --teal4: rgba(0,212,170,0.06);
-  --amber: #f0b429;
-  --amber2:#e09d1a;
-  --amber3:rgba(240,180,41,0.12);
-  --red:   #ff5c5c;
-  --red3:  rgba(255,92,92,0.10);
-  --blue:  #4d9de0;
-  --blue3: rgba(77,157,224,0.10);
-  --t1:    #e6edf3;
-  --t2:    #8b949e;
-  --t3:    #484f58;
-  --t4:    #2d333b;
-  --mono:  'JetBrains Mono', monospace;
-  --sans:  'Space Grotesk', sans-serif;
-  --r:     6px;
-  --r2:    10px;
+:root{
+  --bg0:#0d1117;--bg1:#161b22;--bg2:#1c2333;--bg3:#21262d;--bg4:#2d333b;
+  --ln:rgba(139,188,255,0.09);--ln2:rgba(139,188,255,0.18);--ln3:rgba(139,188,255,0.30);
+  --teal:#00d4aa;--teal2:#00b894;--teal3:rgba(0,212,170,0.12);--teal4:rgba(0,212,170,0.06);
+  --amber:#f0b429;--amber2:#e09d1a;--amber3:rgba(240,180,41,0.12);
+  --red:#ff5c5c;--red3:rgba(255,92,92,0.10);
+  --blue:#4d9de0;--blue3:rgba(77,157,224,0.10);
+  --t1:#e6edf3;--t2:#8b949e;--t3:#484f58;--t4:#2d333b;
+  --mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;
+  --r:6px;--r2:10px;
 }
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:13px;-webkit-font-smoothing:antialiased}
 body{background:var(--bg0);color:var(--t1);font-family:var(--sans);height:100vh;display:flex;flex-direction:column;overflow:hidden}
-
-/* scrollbar */
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:var(--bg1)}
 ::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px}
-::-webkit-scrollbar-thumb:hover{background:var(--line3)}
 
-/* ── TITLEBAR ── */
-.titlebar{
-  height:40px;background:var(--bg1);border-bottom:1px solid var(--line);
-  display:flex;align-items:center;padding:0 16px;gap:0;flex-shrink:0;
-  position:relative;
-}
-.tb-logo{
-  display:flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:13px;font-weight:600;
-  color:var(--t1);letter-spacing:.5px;text-decoration:none;flex-shrink:0;
-}
-.tb-logomark{
-  width:22px;height:22px;background:var(--teal);border-radius:4px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-weight:700;color:#0d1117;letter-spacing:0;
-}
-.tb-sep{width:1px;height:20px;background:var(--line2);margin:0 14px}
+/* TITLEBAR */
+.tb{height:42px;background:var(--bg1);border-bottom:1px solid var(--ln);display:flex;align-items:center;padding:0 16px;gap:0;flex-shrink:0}
+.tb-logo{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;font-weight:600;color:var(--t1);letter-spacing:.5px;flex-shrink:0}
+.tb-mark{width:24px;height:24px;background:var(--teal);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#0d1117}
+.tb-sep{width:1px;height:20px;background:var(--ln2);margin:0 14px}
 .tb-nav{display:flex;gap:1px;flex:1}
-.tb-tab{
-  padding:0 13px;height:40px;display:flex;align-items:center;
-  font-size:11.5px;font-weight:500;color:var(--t3);cursor:pointer;
-  border:none;background:none;font-family:var(--sans);
-  border-bottom:2px solid transparent;transition:all .12s;white-space:nowrap;
-  letter-spacing:.2px;
-}
-.tb-tab:hover{color:var(--t2);background:var(--bg2)}
-.tb-tab.active{color:var(--teal);border-bottom-color:var(--teal);background:var(--teal4)}
-.tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
-.pill-online{
-  display:flex;align-items:center;gap:5px;padding:3px 9px;
-  border-radius:3px;border:1px solid rgba(0,212,170,.2);
-  background:var(--teal4);font-size:10px;font-family:var(--mono);
-  color:var(--teal);letter-spacing:.3px;
-}
-.pill-online::before{
-  content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);
-  animation:blink 2.4s ease-in-out infinite;
-}
+.tb-t{padding:0 12px;height:42px;display:flex;align-items:center;font-size:11.5px;font-weight:500;color:var(--t3);cursor:pointer;border:none;background:none;font-family:var(--sans);border-bottom:2px solid transparent;transition:all .12s;white-space:nowrap;letter-spacing:.2px}
+.tb-t:hover{color:var(--t2);background:var(--bg2)}
+.tb-t.active{color:var(--teal);border-bottom-color:var(--teal);background:var(--teal4)}
+.tb-r{margin-left:auto;display:flex;align-items:center;gap:8px}
+.pill{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:3px;border:1px solid rgba(0,212,170,.2);background:var(--teal4);font-size:10px;font-family:var(--mono);color:var(--teal);letter-spacing:.3px}
+.pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);animation:blink 2.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.tb-btn{
-  padding:4px 11px;border-radius:var(--r);border:1px solid var(--line3);
-  background:none;color:var(--t2);font-size:11px;font-weight:500;
-  font-family:var(--sans);cursor:pointer;transition:all .12s;
-}
-.tb-btn:hover{border-color:var(--teal);color:var(--teal);background:var(--teal4)}
-.tb-btn.accent{background:var(--teal);border-color:var(--teal);color:#0d1117;font-weight:600}
-.tb-btn.accent:hover{background:var(--teal2)}
-
-/* ── LAYOUT ── */
-.app{display:flex;flex:1;overflow:hidden}
-
-/* ── SIDEBAR ── */
-.sidebar{
-  width:52px;background:var(--bg1);border-right:1px solid var(--line);
-  display:flex;flex-direction:column;align-items:center;
-  padding:8px 0;gap:2px;flex-shrink:0;overflow:hidden;
-}
-.sb-icon{
-  width:36px;height:36px;border-radius:var(--r);border:none;background:none;
-  color:var(--t3);cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:15px;transition:all .12s;position:relative;
-}
-.sb-icon:hover{background:var(--bg3);color:var(--t2)}
-.sb-icon.active{background:var(--teal3);color:var(--teal)}
-.sb-icon .sb-pip{
-  position:absolute;top:4px;right:4px;width:5px;height:5px;
-  border-radius:50%;background:var(--amber);
-}
-.sb-divider{width:28px;height:1px;background:var(--line);margin:4px 0}
-
-/* ── PANEL LEFT ── */
-.panel-left{
-  width:228px;background:var(--bg1);border-right:1px solid var(--line);
-  display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;
-}
-.pl-head{
-  padding:10px 14px;border-bottom:1px solid var(--line);
-  font-size:10px;font-weight:600;color:var(--t3);
-  text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.pl-body{flex:1;overflow-y:auto;padding:6px}
-
-/* tree items */
-.tree-group{margin-bottom:2px}
-.tree-label{
-  padding:5px 8px;font-size:10px;font-weight:600;color:var(--t3);
-  text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);
-  display:flex;align-items:center;gap:6px;
-}
-.tree-item{
-  display:flex;align-items:center;gap:8px;padding:6px 10px;
-  border-radius:var(--r);cursor:pointer;font-size:12px;font-weight:500;
-  color:var(--t2);transition:all .12s;border:none;background:none;
-  width:100%;text-align:left;font-family:var(--sans);
-}
-.tree-item:hover{background:var(--bg3);color:var(--t1)}
-.tree-item.active{background:var(--teal3);color:var(--teal)}
-.tree-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.td-ok   {background:var(--teal)}
-.td-warn {background:var(--amber)}
-.td-err  {background:var(--red)}
-.td-idle {background:var(--t3)}
-.td-load {background:var(--blue);animation:blink 1s infinite}
-.tree-badge{
-  margin-left:auto;font-size:9px;padding:1px 5px;border-radius:3px;
-  font-family:var(--mono);
-}
-.tb-amber{background:var(--amber3);color:var(--amber)}
-.tb-teal {background:var(--teal3); color:var(--teal)}
-.tb-red  {background:var(--red3);  color:var(--red)}
-
-/* ── MAIN ── */
-.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-
-/* ── BREADCRUMB BAR ── */
-.breadbar{
-  height:34px;background:var(--bg1);border-bottom:1px solid var(--line);
-  display:flex;align-items:center;padding:0 16px;gap:6px;flex-shrink:0;
-}
-.breadbar span{font-size:11px;font-family:var(--mono);color:var(--t3)}
-.breadbar span.active{color:var(--t2)}
-.breadbar .sep{color:var(--t3);margin:0 2px}
-
-/* ── PROGRESS ── */
-.prog-strip{height:2px;background:var(--bg2);flex-shrink:0}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));width:0;transition:width .2s}
-
-/* ── CONTENT ── */
-.content{flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:16px}
-
-/* ── PAGE ── */
-.page{display:none;flex-direction:column;gap:16px}
-.page.active{display:flex}
-
-/* ── PAGE HEADER ── */
-.pg-head{display:flex;align-items:flex-start;gap:14px;padding-bottom:4px;border-bottom:1px solid var(--line)}
-.pg-title{font-size:18px;font-weight:700;color:var(--t1);letter-spacing:-.3px}
-.pg-sub{font-size:11px;color:var(--t3);margin-top:3px;font-family:var(--mono)}
-.pg-actions{margin-left:auto;display:flex;gap:7px;align-items:flex-start;padding-top:2px}
-
-/* ── SECTION ── */
-.sec-label{
-  font-size:9px;font-weight:600;color:var(--t3);
-  text-transform:uppercase;letter-spacing:1.1px;font-family:var(--mono);
-  margin-bottom:7px;display:flex;align-items:center;gap:8px;
-}
-.sec-label::after{content:'';flex:1;height:1px;background:var(--line)}
-
-/* ── METRICS ── */
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.metric{
-  background:var(--bg2);border:1px solid var(--line);border-radius:var(--r2);
-  padding:12px 14px;transition:border-color .12s;
-}
-.metric:hover{border-color:var(--line2)}
-.metric.teal {border-color:rgba(0,212,170,.2);background:var(--teal4)}
-.metric.amber{border-color:rgba(240,180,41,.2);background:var(--amber3)}
-.metric.red  {border-color:rgba(255,92,92,.2); background:var(--red3)}
-.m-label{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:6px}
-.m-val  {font-size:22px;font-weight:700;color:var(--t1);font-family:var(--mono);line-height:1}
-.metric.teal  .m-val{color:var(--teal)}
-.metric.amber .m-val{color:var(--amber)}
-.metric.red   .m-val{color:var(--red)}
-.m-sub  {font-size:10px;color:var(--t3);margin-top:4px;font-family:var(--mono)}
-
-/* ── PANEL / CARD ── */
-.panel{background:var(--bg1);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden}
-.panel:hover{border-color:var(--line2)}
-.panel-head{
-  padding:9px 14px;background:var(--bg2);border-bottom:1px solid var(--line);
-  display:flex;align-items:center;gap:9px;
-}
-.ph-icon{
-  width:26px;height:26px;border-radius:5px;display:flex;align-items:center;
-  justify-content:center;font-size:9px;font-weight:700;font-family:var(--mono);flex-shrink:0;
-}
-.ph-title{font-size:12px;font-weight:600;color:var(--t1);flex:1;letter-spacing:.2px}
-.ph-meta {font-size:10px;color:var(--t3);font-family:var(--mono)}
-.panel-body{padding:12px 14px;display:flex;flex-direction:column;gap:7px}
-
-/* ── DATA ROWS ── */
-.dr{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:11.5px}
-.dr-k{color:var(--t3);font-family:var(--sans);flex-shrink:0}
-.dr-v{color:var(--t1);font-family:var(--mono);font-size:11px;text-align:right;display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:flex-end}
-.divhr{height:1px;background:var(--line);margin:4px 0}
-
-/* ── TAGS ── */
-.tag{display:inline-flex;align-items:center;padding:2px 6px;border-radius:3px;font-size:9px;font-family:var(--mono);font-weight:500;white-space:nowrap}
-.tg-ok   {background:rgba(0,212,170,.1); color:var(--teal); border:1px solid rgba(0,212,170,.2)}
-.tg-warn {background:rgba(240,180,41,.1);color:var(--amber);border:1px solid rgba(240,180,41,.2)}
-.tg-err  {background:rgba(255,92,92,.1); color:var(--red);  border:1px solid rgba(255,92,92,.2)}
-.tg-blue {background:rgba(77,157,224,.1);color:var(--blue); border:1px solid rgba(77,157,224,.2)}
-.tg-gray {background:var(--bg3);         color:var(--t2);   border:1px solid var(--line2)}
-
-/* ── ALERT ROWS ── */
-.alert{display:flex;gap:9px;padding:8px 11px;border-radius:var(--r);align-items:flex-start}
-.alert.err  {background:var(--red3);  border:1px solid rgba(255,92,92,.18)}
-.alert.warn {background:var(--amber3);border:1px solid rgba(240,180,41,.18)}
-.alert.ok   {background:var(--teal4); border:1px solid rgba(0,212,170,.18)}
-.alert-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.alert-txt{font-size:11px;line-height:1.55}
-.alert.err  .alert-txt{color:#ff9494}
-.alert.warn .alert-txt{color:#f5cc6a}
-.alert.ok   .alert-txt{color:#4dd9b8}
-.alert-txt strong{font-weight:600}
-
-/* ── GRID ── */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-
-/* ── BTN ── */
-.btn{
-  padding:6px 13px;border-radius:var(--r);border:1px solid var(--line3);
-  background:none;color:var(--t2);font-size:11px;font-weight:500;
-  font-family:var(--sans);cursor:pointer;transition:all .12s;
-}
-.btn:hover{border-color:var(--line3);background:var(--bg3);color:var(--t1)}
-.btn.teal {background:var(--teal);border-color:var(--teal);color:#0d1117;font-weight:700}
+.btn{padding:5px 12px;border-radius:var(--r);border:1px solid var(--ln3);background:none;color:var(--t2);font-size:11px;font-weight:500;font-family:var(--sans);cursor:pointer;transition:all .12s}
+.btn:hover{border-color:var(--ln3);background:var(--bg3);color:var(--t1)}
+.btn.teal{background:var(--teal);border-color:var(--teal);color:#0d1117;font-weight:700}
 .btn.teal:hover{background:var(--teal2)}
 .btn.amber{background:var(--amber3);border-color:rgba(240,180,41,.3);color:var(--amber)}
-.btn.err  {background:var(--red3);  border-color:rgba(255,92,92,.3);  color:var(--red)}
-.actions{display:flex;gap:7px;flex-wrap:wrap;padding-top:2px}
+.btn.red{background:var(--red3);border-color:rgba(255,92,92,.3);color:var(--red)}
 
-/* ── SEARCH ── */
-.searchbar{
-  display:flex;gap:8px;align-items:center;
-  padding:10px 14px;background:var(--bg2);border-bottom:1px solid var(--line);
-}
-.si-wrap{flex:1;position:relative}
-.si-wrap input{
-  width:100%;padding:7px 12px 7px 32px;border-radius:var(--r);
-  border:1px solid var(--line2);background:var(--bg3);color:var(--t1);
-  font-size:11.5px;font-family:var(--mono);outline:none;transition:border-color .15s;
-}
-.si-wrap input:focus{border-color:var(--teal);background:var(--bg2)}
-.si-wrap input::placeholder{color:var(--t3)}
-.si-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:13px;pointer-events:none}
+/* LAYOUT */
+.app{display:flex;flex:1;overflow:hidden}
 
-/* ── TABLE ── */
+/* SIDEBAR icons */
+.sb{width:48px;background:var(--bg1);border-right:1px solid var(--ln);display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:2px;flex-shrink:0}
+.sb-ic{width:34px;height:34px;border-radius:var(--r);border:none;background:none;color:var(--t3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .12s}
+.sb-ic:hover{background:var(--bg3);color:var(--t2)}
+.sb-ic.active{background:var(--teal3);color:var(--teal)}
+.sb-div{width:26px;height:1px;background:var(--ln);margin:4px 0}
+.sb-pip{position:absolute;top:4px;right:4px;width:5px;height:5px;border-radius:50%;background:var(--amber)}
+
+/* EXPLORER */
+.ex{width:220px;background:var(--bg1);border-right:1px solid var(--ln);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden}
+.ex-h{padding:9px 13px;border-bottom:1px solid var(--ln);font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);display:flex;align-items:center;justify-content:space-between}
+.ex-body{flex:1;overflow-y:auto;padding:5px}
+.ex-lbl{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);padding:8px 8px 3px}
+.ex-item{display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:var(--r);cursor:pointer;font-size:11.5px;font-weight:500;color:var(--t2);transition:all .12s;border:none;background:none;width:100%;text-align:left;font-family:var(--sans)}
+.ex-item:hover{background:var(--bg3);color:var(--t1)}
+.ex-item.active{background:var(--teal3);color:var(--teal)}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.d-ok{background:var(--teal)}.d-warn{background:var(--amber)}.d-err{background:var(--red)}.d-idle{background:var(--t3)}.d-load{background:var(--blue);animation:blink 1s infinite}
+.ex-badge{margin-left:auto;font-size:9px;padding:1px 5px;border-radius:3px;font-family:var(--mono)}
+.eb-a{background:var(--amber3);color:var(--amber)}
+.eb-t{background:var(--teal3);color:var(--teal)}
+.eb-r{background:var(--red3);color:var(--red)}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.prog{height:2px;background:var(--bg2);flex-shrink:0}
+.prog-f{height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));width:0;transition:width .2s}
+.content{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.page{display:none;flex-direction:column;gap:14px}
+.page.active{display:flex}
+
+/* PAGE HEADER */
+.pg-h{display:flex;align-items:flex-start;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--ln)}
+.pg-title{font-size:17px;font-weight:700;color:var(--t1);letter-spacing:-.3px}
+.pg-sub{font-size:10px;color:var(--t3);margin-top:3px;font-family:var(--mono)}
+.pg-act{margin-left:auto;display:flex;gap:6px;align-items:flex-start;padding-top:2px}
+.sec-lbl{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:1.1px;font-family:var(--mono);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--ln)}
+
+/* METRICS */
+.mets{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.met{background:var(--bg2);border:1px solid var(--ln);border-radius:var(--r2);padding:11px 13px;transition:border-color .12s}
+.met:hover{border-color:var(--ln2)}
+.met.tl{border-color:rgba(0,212,170,.2);background:var(--teal4)}
+.met.am{border-color:rgba(240,180,41,.2);background:var(--amber3)}
+.met.rd{border-color:rgba(255,92,92,.2);background:var(--red3)}
+.m-lbl{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:5px}
+.m-val{font-size:20px;font-weight:700;color:var(--t1);font-family:var(--mono);line-height:1}
+.met.tl .m-val{color:var(--teal)}.met.am .m-val{color:var(--amber)}.met.rd .m-val{color:var(--red)}
+.m-sub{font-size:9px;color:var(--t3);margin-top:3px;font-family:var(--mono)}
+
+/* PANELS */
+.panel{background:var(--bg1);border:1px solid var(--ln);border-radius:var(--r2);overflow:hidden}
+.panel:hover{border-color:var(--ln2)}
+.ph{padding:9px 14px;background:var(--bg2);border-bottom:1px solid var(--ln);display:flex;align-items:center;gap:8px}
+.ph-ico{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--mono);flex-shrink:0}
+.ph-title{font-size:12px;font-weight:600;color:var(--t1);flex:1;letter-spacing:.2px}
+.ph-meta{font-size:10px;color:var(--t3);font-family:var(--mono)}
+.pb{padding:11px 14px;display:flex;flex-direction:column;gap:6px}
+
+/* DATA ROWS */
+.dr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11.5px}
+.dk{color:var(--t3);flex-shrink:0}
+.dv{color:var(--t1);font-family:var(--mono);font-size:11px;text-align:right;display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.divhr{height:1px;background:var(--ln);margin:3px 0}
+
+/* TAGS */
+.tag{display:inline-flex;align-items:center;padding:2px 6px;border-radius:3px;font-size:9px;font-family:var(--mono);font-weight:500;white-space:nowrap}
+.t-ok{background:rgba(0,212,170,.1);color:var(--teal);border:1px solid rgba(0,212,170,.2)}
+.t-warn{background:rgba(240,180,41,.1);color:var(--amber);border:1px solid rgba(240,180,41,.2)}
+.t-err{background:rgba(255,92,92,.1);color:var(--red);border:1px solid rgba(255,92,92,.2)}
+.t-blue{background:rgba(77,157,224,.1);color:var(--blue);border:1px solid rgba(77,157,224,.2)}
+.t-gray{background:var(--bg3);color:var(--t2);border:1px solid var(--ln2)}
+
+/* ALERTS */
+.alert{display:flex;gap:8px;padding:7px 10px;border-radius:var(--r);align-items:flex-start}
+.alert.err{background:var(--red3);border:1px solid rgba(255,92,92,.18)}
+.alert.warn{background:var(--amber3);border:1px solid rgba(240,180,41,.18)}
+.alert.ok{background:var(--teal4);border:1px solid rgba(0,212,170,.18)}
+.a-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.a-txt{font-size:11px;line-height:1.5}
+.alert.err .a-txt{color:#ff9494}.alert.warn .a-txt{color:#f5cc6a}.alert.ok .a-txt{color:#4dd9b8}
+.a-txt strong{font-weight:600}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+
+/* ACTIONS */
+.acts{display:flex;gap:6px;flex-wrap:wrap;padding-top:2px}
+
+/* FORM */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ff{display:flex;flex-direction:column;gap:4px}
+.ff label{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;font-family:var(--mono)}
+.ff input,.ff select,.ff textarea{padding:7px 10px;border-radius:var(--r);border:1px solid var(--ln2);background:var(--bg3);color:var(--t1);font-size:12px;font-family:var(--mono);outline:none;transition:border-color .15s}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--teal);background:var(--bg2)}
+.ff input::placeholder,.ff textarea::placeholder{color:var(--t3)}
+.ff textarea{resize:vertical;min-height:60px}
+
+/* WIZARD */
+.wz{display:flex;gap:0;margin-bottom:16px}
+.wz-s{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
+.wz-s::after{content:'';position:absolute;top:13px;left:50%;width:100%;height:1px;background:var(--ln)}
+.wz-s:last-child::after{display:none}
+.wz-c{width:26px;height:26px;border-radius:50%;border:1px solid var(--ln2);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--t3);z-index:1;font-family:var(--mono);transition:all .2s}
+.wz-s.done .wz-c{background:var(--teal);border-color:var(--teal);color:#0d1117}
+.wz-s.now .wz-c{background:var(--amber);border-color:var(--amber);color:#0d1117}
+.wz-s.done::after{background:var(--teal);opacity:.4}
+.wz-lbl{font-size:9px;color:var(--t3);font-weight:500;text-align:center;line-height:1.3;font-family:var(--mono)}
+.wz-s.done .wz-lbl{color:var(--teal)}.wz-s.now .wz-lbl{color:var(--amber);font-weight:600}
+
+/* TABLE */
 .tbl{width:100%;border-collapse:collapse}
-.tbl th{background:var(--bg3);padding:7px 12px;text-align:left;font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);border-bottom:1px solid var(--line)}
-.tbl td{padding:8px 12px;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--t1);font-family:var(--mono)}
+.tbl th{background:var(--bg3);padding:7px 11px;text-align:left;font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);border-bottom:1px solid var(--ln)}
+.tbl td{padding:8px 11px;border-bottom:1px solid var(--ln);font-size:11px;color:var(--t1);font-family:var(--mono)}
 .tbl tr:hover td{background:var(--bg2)}
 .tbl tr:last-child td{border-bottom:none}
-.tbl td.sans{font-family:var(--sans)}
+.tbl td.sans{font-family:var(--sans);font-size:12px}
 
-/* ── DROP ZONE ── */
-.dropzone{
-  border:1.5px dashed var(--line2);border-radius:var(--r2);padding:36px 24px;
-  text-align:center;background:var(--bg2);cursor:pointer;transition:all .2s;
-}
-.dropzone:hover{border-color:var(--teal);background:var(--teal4)}
-.dz-icon{font-size:28px;margin-bottom:10px;opacity:.7}
-.dz-title{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:4px}
-.dz-sub{font-size:11px;color:var(--t3);font-family:var(--mono)}
-.dz-formats{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-top:12px}
-.dz-fmt{font-size:9px;padding:2px 7px;border-radius:3px;background:var(--bg3);border:1px solid var(--line2);color:var(--t2);font-family:var(--mono)}
+/* SBADGE */
+.sb2{font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px;font-family:var(--mono)}
+.sb-p{background:var(--amber3);color:var(--amber)}.sb-d{background:var(--teal3);color:var(--teal)}.sb-w{background:var(--blue3);color:var(--blue)}
 
-/* ── MAP ── */
-.map-wrap{position:relative;border-radius:var(--r2);overflow:hidden;border:1px solid var(--line);background:#0f1c14}
+/* DROPZONE */
+.dz{border:1.5px dashed var(--ln2);border-radius:var(--r2);padding:32px 20px;text-align:center;background:var(--bg2);cursor:pointer;transition:all .2s}
+.dz:hover{border-color:var(--teal);background:var(--teal4)}
+.dz-t{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.dz-s{font-size:11px;color:var(--t3);font-family:var(--mono)}
+.dz-fmts{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.dz-f{font-size:9px;padding:2px 7px;border-radius:3px;background:var(--bg3);border:1px solid var(--ln2);color:var(--t2);font-family:var(--mono)}
+
+/* MAP */
+.map-w{position:relative;border-radius:var(--r2);overflow:hidden;border:1px solid var(--ln);background:#0f1c14}
 .map-svg{width:100%;display:block}
 .map-ctrl{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:4px}
-.map-cbtn{
-  width:28px;height:28px;border-radius:5px;border:1px solid var(--line2);
-  background:var(--bg2);color:var(--t2);font-size:14px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:all .12s;font-weight:600;
-}
-.map-cbtn:hover{border-color:var(--teal);color:var(--teal);background:var(--teal4)}
-.map-layers{
-  position:absolute;top:10px;left:10px;background:rgba(22,27,34,0.95);
-  border:1px solid var(--line);border-radius:var(--r2);padding:9px 11px;min-width:155px;
-}
-.ml-title{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);margin-bottom:7px}
-.ml-row{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--t2);cursor:pointer;margin-bottom:5px;font-family:var(--sans)}
-.ml-row:last-child{margin-bottom:0}
-.ml-chk{width:13px;height:13px;border-radius:3px;border:1px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .12s}
+.mc{width:26px;height:26px;border-radius:4px;border:1px solid var(--ln2);background:var(--bg2);color:var(--t2);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s;font-weight:600}
+.mc:hover{border-color:var(--teal);color:var(--teal);background:var(--teal4)}
+.map-ly{position:absolute;top:10px;left:10px;background:rgba(22,27,34,.95);border:1px solid var(--ln);border-radius:var(--r2);padding:9px 11px;min-width:150px}
+.ml-t{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);margin-bottom:7px}
+.ml-r{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--t2);cursor:pointer;margin-bottom:5px}
+.ml-chk{width:12px;height:12px;border-radius:3px;border:1px solid var(--ln2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .12s}
 .ml-chk.on{background:var(--teal);border-color:var(--teal)}
 .ml-chk.on::after{content:'✓';color:#0d1117;font-size:8px;font-weight:800}
-.map-coord{
-  position:absolute;bottom:10px;left:10px;background:rgba(22,27,34,.9);
-  border:1px solid var(--line);border-radius:4px;padding:4px 8px;
-  font-size:9px;font-family:var(--mono);color:var(--teal);letter-spacing:.4px;
-}
+.map-co{position:absolute;bottom:10px;left:10px;background:rgba(22,27,34,.9);border:1px solid var(--ln);border-radius:4px;padding:3px 8px;font-size:9px;font-family:var(--mono);color:var(--teal);letter-spacing:.4px}
 
-/* ── WIZARD ── */
-.wizard{display:flex;gap:0;margin-bottom:18px}
-.wz-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
-.wz-step::after{content:'';position:absolute;top:13px;left:50%;width:100%;height:1px;background:var(--line)}
-.wz-step:last-child::after{display:none}
-.wz-circle{
-  width:27px;height:27px;border-radius:50%;border:1px solid var(--line2);
-  background:var(--bg2);display:flex;align-items:center;justify-content:center;
-  font-size:10px;font-weight:700;color:var(--t3);z-index:1;font-family:var(--mono);transition:all .2s;
-}
-.wz-step.done .wz-circle {background:var(--teal); border-color:var(--teal); color:#0d1117}
-.wz-step.active .wz-circle{background:var(--amber);border-color:var(--amber);color:#0d1117}
-.wz-step.done::after{background:var(--teal);opacity:.4}
-.wz-label{font-size:9.5px;color:var(--t3);font-weight:500;text-align:center;line-height:1.3;font-family:var(--mono)}
-.wz-step.done .wz-label{color:var(--teal)}
-.wz-step.active .wz-label{color:var(--amber);font-weight:600}
-
-/* ── FORM ── */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ff{display:flex;flex-direction:column;gap:4px}
-.ff label{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;font-family:var(--mono)}
-.ff input,.ff select{
-  padding:7px 10px;border-radius:var(--r);border:1px solid var(--line2);
-  background:var(--bg3);color:var(--t1);font-size:12px;font-family:var(--mono);
-  outline:none;transition:border-color .15s;
-}
-.ff input:focus,.ff select:focus{border-color:var(--teal);background:var(--bg2)}
-.ff input::placeholder{color:var(--t3)}
-
-/* ── STATUS BADGES ── */
-.sbadge{font-size:9px;font-weight:600;padding:2px 7px;border-radius:3px;font-family:var(--mono)}
-.sb-prog{background:var(--amber3);color:var(--amber)}
-.sb-done{background:var(--teal3); color:var(--teal)}
-.sb-wait{background:var(--blue3); color:var(--blue)}
-
-/* ── LUCRARI ── */
-.lc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.lc{
-  background:var(--bg2);border:1px solid var(--line);border-radius:var(--r2);
-  padding:11px 13px;cursor:pointer;transition:all .15s;
-}
-.lc:hover{border-color:var(--line2);transform:translateY(-1px)}
-.lc.sel{border-color:var(--teal);background:var(--teal4)}
-.lc-type{font-size:9px;font-weight:600;color:var(--teal);font-family:var(--mono);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.lc.sel .lc-type{color:var(--amber)}
-.lc-name{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:2px}
-.lc-sub {font-size:10px;color:var(--t3);font-family:var(--mono)}
-
-/* ── RECENT ITEMS ── */
-.ri{
-  display:flex;align-items:center;gap:10px;padding:9px 12px;
-  background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);
-  cursor:pointer;transition:all .12s;
-}
-.ri:hover{border-color:var(--line2);background:var(--bg3)}
-.ri-icon{
-  width:32px;height:32px;border-radius:6px;background:var(--teal3);
-  display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-weight:700;font-family:var(--mono);color:var(--teal);flex-shrink:0;
-}
-.ri-name{font-size:12px;font-weight:600;color:var(--t1)}
-.ri-sub {font-size:10px;color:var(--t3);font-family:var(--mono);margin-top:1px}
-.ri-right{margin-left:auto;text-align:right}
-.ri-date{font-size:9px;color:var(--t3);font-family:var(--mono);margin-top:3px}
-
-/* ── DOC GRID ── */
-.doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.dc{
-  background:var(--bg2);border:1px solid var(--line);border-radius:var(--r2);
-  padding:12px 13px;cursor:pointer;transition:all .12s;display:flex;gap:10px;align-items:flex-start;
-}
-.dc:hover{border-color:var(--teal);background:var(--teal4)}
-.dc-ico{
-  width:36px;height:40px;border-radius:5px;display:flex;align-items:center;
-  justify-content:center;font-size:9px;font-weight:700;font-family:var(--mono);flex-shrink:0;
-}
-.dc-name{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:3px}
-.dc-sub {font-size:10px;color:var(--t3);line-height:1.4;font-family:var(--mono)}
-.dc-status{margin-top:5px}
-
-/* ── JURIDIC ── */
-.jur-item{border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;transition:border-color .12s}
-.jur-item:hover{border-color:var(--line2)}
-.jur-head{
-  padding:10px 14px;display:flex;align-items:flex-start;gap:10px;
-  background:var(--bg2);cursor:pointer;
-}
-.jur-head:hover{background:var(--bg3)}
-.jur-ico{width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--mono);flex-shrink:0}
-.jur-title{font-size:12px;font-weight:600;color:var(--t1);letter-spacing:.1px}
-.jur-sub  {font-size:10px;color:var(--t3);margin-top:2px;font-family:var(--mono)}
-.jur-body {padding:12px 14px;border-top:1px solid var(--line);background:var(--bg1);display:none}
-.jur-body.open{display:block}
-.art-row{display:flex;gap:9px;margin-bottom:8px;align-items:flex-start}
-.art-nr{font-size:9px;font-weight:600;padding:2px 7px;border-radius:3px;white-space:nowrap;flex-shrink:0;font-family:var(--mono);background:var(--teal3);color:var(--teal);border:1px solid rgba(0,212,170,.2)}
-.art-nr.amber{background:var(--amber3);color:var(--amber);border-color:rgba(240,180,41,.2)}
-.art-txt{font-size:11px;color:var(--t2);line-height:1.55}
-.art-txt strong{color:var(--t1);font-weight:600}
-
-/* ── CONECTOR ── */
-.con-layout{display:flex;gap:14px}
-.con-left{width:185px;min-width:185px;display:flex;flex-direction:column;gap:2px}
-.con-right{flex:1;display:flex;flex-direction:column;gap:10px}
-.csrc{
-  display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:var(--r);
-  font-size:11px;color:var(--t3);cursor:pointer;border:none;background:none;
-  width:100%;text-align:left;font-family:var(--sans);transition:all .12s;font-weight:500;
-}
+/* OCR specific */
+.ocr-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.doc-preview{background:var(--bg3);border:1px solid var(--ln);border-radius:var(--r2);min-height:320px;display:flex;flex-direction:column;overflow:hidden}
+.doc-preview-head{padding:8px 12px;background:var(--bg2);border-bottom:1px solid var(--ln);font-size:11px;color:var(--t2);font-family:var(--mono);display:flex;align-items:center;gap:8px}
+.doc-preview-body{flex:1;display:flex;align-items:center;justify-content:center;padding:20px;position:relative}
+.doc-sim{width:100%;max-width:280px;background:var(--bg2);border:1px solid var(--ln2);border-radius:6px;padding:14px;font-family:var(--mono);font-size:10px;color:var(--t2);line-height:1.7;position:relative}
+.doc-sim-title{font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;text-align:center}
+.doc-highlight{background:rgba(0,212,170,.15);border:1px solid rgba(0,212,170,.3);border-radius:3px;padding:1px 3px;color:var(--teal);font-weight:600}
+.extract-panel{display:flex;flex-direction:column;gap:8px}
+.ex-field{background:var(--bg2);border:1px solid var(--ln);border-radius:var(--r);padding:9px 12px;transition:border-color .12s}
+.ex-field:hover{border-color:var(--ln2)}
+.ex-field.confirmed{border-color:rgba(0,212,170,.35);background:var(--teal4)}
+.ex-field.uncertain{border-color:rgba(240,180,41,.35);background:var(--amber3)}
+.ef-label{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.7px;font-family:var(--mono);margin-bottom:5px;display:flex;align-items:center;justify-content:space-between}
+.ef-conf{font-size:9px;font-family:var(--mono);font-weight:600}
+.ef-val{font-size:12px;font-family:var(--mono);color:var(--t1);background:var(--bg3);border:1px solid var(--ln);border-radius:4px;padding:5px 8px;width:100%;outline:none;transition:border-color .15s}
+.ef-val:focus{border-color:var(--teal)}
+.doc-tabs{display:flex;gap:2px;padding:6px}
+.doc-tab{padding:5px 10px;border-radius:4px;font-size:10px;font-weight:500;color:var(--t3);cursor:pointer;border:none;background:none;font-family:var(--mono);transition:all .12s}
+.doc-tab:hover{background:var(--bg3);color:var(--t2)}
+.doc-tab.active{background:var(--teal3);color:var(--teal)}
+.scan-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r);border:1px solid var(--ln2);background:var(--bg3);color:var(--t2);font-size:11px;font-family:var(--sans);cursor:pointer;transition:all .12s;font-weight:500;width:100%;justify-content:center;margin-bottom:6px}
+.scan-btn:hover{border-color:var(--teal);color:var(--teal);background:var(--teal4)}
+.scan-btn.primary{background:var(--teal);border-color:var(--teal);color:#0d1117;font-weight:700}
+.scan-btn.primary:hover{background:var(--teal2)}
+.conf-score{display:flex;align-items:center;gap:6px}
+.cs-bar{flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden}
+.cs-fill{height:100%;border-radius:2px;background:var(--teal);transition:width .3s}
+.cs-fill.med{background:var(--amber)}.cs-fill.low{background:var(--red)}
+.dosare-list{display:flex;flex-direction:column;gap:6px}
+.dosar-item{background:var(--bg2);border:1px solid var(--ln);border-radius:var(--r);padding:10px 13px;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:10px}
+.dosar-item:hover{border-color:var(--ln2);background:var(--bg3)}
+.di-ico{width:32px;height:32px;border-radius:6px;background:var(--teal3);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--mono);color:var(--teal);flex-shrink:0}
+.di-name{font-size:12px;font-weight:600;color:var(--t1)}
+.di-sub{font-size:10px;color:var(--t3);font-family:var(--mono);margin-top:1px}
+.di-r{margin-left:auto;text-align:right}
+.di-date{font-size:9px;color:var(--t3);font-family:var(--mono);margin-top:3px}
+.coord-b{background:var(--bg3);border:1px solid var(--ln);border-radius:var(--r);padding:6px 10px;font-family:var(--mono);font-size:10px;color:var(--teal);display:flex;align-items:center;gap:6px}
+.coord-b span{color:var(--t3)}
+.av{width:26px;height:26px;border-radius:50%;background:var(--teal3);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--teal);font-family:var(--mono)}
+/* juridic */
+.jur-i{border:1px solid var(--ln);border-radius:var(--r2);overflow:hidden;transition:border-color .12s;margin-bottom:7px}
+.jur-i:hover{border-color:var(--ln2)}
+.jur-h{padding:10px 14px;display:flex;align-items:flex-start;gap:9px;background:var(--bg2);cursor:pointer}
+.jur-h:hover{background:var(--bg3)}
+.jur-ico{width:27px;height:27px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--mono);flex-shrink:0}
+.jur-t{font-size:12px;font-weight:600;color:var(--t1)}
+.jur-s{font-size:10px;color:var(--t3);margin-top:2px;font-family:var(--mono)}
+.jur-b{padding:11px 14px;border-top:1px solid var(--ln);background:var(--bg1);display:none}
+.jur-b.open{display:block}
+.art-r{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start}
+.art-n{font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px;white-space:nowrap;flex-shrink:0;font-family:var(--mono);background:var(--teal3);color:var(--teal);border:1px solid rgba(0,212,170,.2)}
+.art-n.am{background:var(--amber3);color:var(--amber);border-color:rgba(240,180,41,.2)}
+.art-tx{font-size:11px;color:var(--t2);line-height:1.55}
+.art-tx strong{color:var(--t1);font-weight:600}
+/* conector */
+.con-l{width:180px;min-width:180px;display:flex;flex-direction:column;gap:2px}
+.con-r{flex:1;display:flex;flex-direction:column;gap:10px}
+.csrc{display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:var(--r);font-size:11px;color:var(--t3);cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--sans);transition:all .12s;font-weight:500}
 .csrc:hover{background:var(--bg3);color:var(--t2)}
 .csrc.active{background:var(--teal3);color:var(--teal)}
-.csrc-lbl{
-  font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;
-  letter-spacing:.9px;font-family:var(--mono);padding:7px 9px 3px;
-}
-
-/* ── CRM ── */
-.av{width:26px;height:26px;border-radius:50%;background:var(--teal3);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--teal);font-family:var(--mono)}
-
-/* ── COORD DISPLAY ── */
-.coord-box{
-  background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);
-  padding:7px 10px;font-family:var(--mono);font-size:10px;color:var(--teal);
-  display:flex;align-items:center;gap:6px;
-}
-.coord-box span{color:var(--t3)}
+.csrc-lbl{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);padding:7px 9px 3px}
+/* lc */
+.lc-g{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.lc{background:var(--bg2);border:1px solid var(--ln);border-radius:var(--r2);padding:10px 12px;cursor:pointer;transition:all .15s}
+.lc:hover{border-color:var(--ln2);transform:translateY(-1px)}
+.lc.sel{border-color:var(--teal);background:var(--teal4)}
+.lc-tp{font-size:9px;font-weight:600;color:var(--teal);font-family:var(--mono);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.lc.sel .lc-tp{color:var(--amber)}
+.lc-nm{font-size:11.5px;font-weight:600;color:var(--t1)}
+.lc-sb{font-size:10px;color:var(--t3);font-family:var(--mono)}
+/* sec guard */
+.sec-guard{background:var(--bg2);border:1px solid rgba(0,212,170,.2);border-radius:var(--r2);padding:10px 14px;display:flex;align-items:center;gap:10px}
+.sg-icon{width:32px;height:32px;border-radius:50%;background:var(--teal3);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.sg-text{font-size:11px;color:var(--teal);line-height:1.5}
+.sg-text strong{font-weight:700}
 </style>
 </head>
 <body>
 
-<!-- ═══ TITLEBAR ═══ -->
-<header class="titlebar">
-  <div class="tb-logo">
-    <div class="tb-logomark">AT</div>
-    AppTopo
-    <span style="color:var(--t3);font-weight:300;font-size:10px;margin-left:2px">v2.1</span>
-  </div>
+<header class="tb">
+  <div class="tb-logo"><div class="tb-mark">AT</div>AppTopo<span style="color:var(--t3);font-weight:400;font-size:10px;margin-left:2px">v2.1</span></div>
   <div class="tb-sep"></div>
   <nav class="tb-nav">
-    <button class="tb-tab" onclick="showPage(&#39;dashboard&#39;,this)">Dashboard</button>
-    <button class="tb-tab active" onclick="showPage(&#39;lucrare&#39;,this)">Lucrare nouă</button>
-    <button class="tb-tab" onclick="showPage(&#39;import&#39;,this)">Import</button>
-    <button class="tb-tab" onclick="showPage(&#39;harta&#39;,this)">Hartă</button>
-    <button class="tb-tab" onclick="showPage(&#39;documente&#39;,this)">Documente</button>
-    <button class="tb-tab" onclick="showPage(&#39;juridic&#39;,this)">Juridic</button>
-    <button class="tb-tab" onclick="showPage(&#39;conector&#39;,this)">Conector</button>
-    <button class="tb-tab" onclick="showPage(&#39;crm&#39;,this)">Clienți</button>
+    <button class="tb-t active" onclick="go(&#39;dashboard&#39;,this)">Dashboard</button>
+    <button class="tb-t" onclick="go(&#39;lucrare&#39;,this)">Lucrare nouă</button>
+    <button class="tb-t" onclick="go(&#39;documente-client&#39;,this)">Documente client</button>
+    <button class="tb-t" onclick="go(&#39;import&#39;,this)">Import teren</button>
+    <button class="tb-t" onclick="go(&#39;harta&#39;,this)">Hartă</button>
+    <button class="tb-t" onclick="go(&#39;generator&#39;,this)">Generator</button>
+    <button class="tb-t" onclick="go(&#39;juridic&#39;,this)">Juridic</button>
+    <button class="tb-t" onclick="go(&#39;conector&#39;,this)">Conector</button>
+    <button class="tb-t" onclick="go(&#39;dosare&#39;,this)">Dosare</button>
   </nav>
-  <div class="tb-right">
-    <div class="pill-online">12 surse · online</div>
-    <button class="tb-btn accent" onclick="showPage(&#39;lucrare&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[1])">+ Lucrare nouă</button>
+  <div class="tb-r">
+    <div class="pill">local · securizat</div>
+    <button class="btn teal" onclick="go(&#39;lucrare&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[1])">+ Lucrare nouă</button>
   </div>
 </header>
 
 <div class="app">
-
-<!-- ═══ ICON SIDEBAR ═══ -->
-<aside class="sidebar">
-  <button class="sb-icon" title="Dashboard" onclick="showPage(&#39;dashboard&#39;,document.querySelector(&#39;.tb-tab&#39;))">⊞</button>
-  <button class="sb-icon" title="Lucrare nouă" onclick="showPage(&#39;lucrare&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[1])">⊕</button>
-  <button class="sb-icon" title="Import" onclick="showPage(&#39;import&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[2])">⇪</button>
-  <button class="sb-icon" title="Hartă" onclick="showPage(&#39;harta&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[3])">⊡</button>
-  <div class="sb-divider"></div>
-  <button class="sb-icon" title="Documente" onclick="showPage(&#39;documente&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[4])">
-    ⊟<div class="sb-pip"></div>
-  </button>
-  <button class="sb-icon" title="Juridic" onclick="showPage(&#39;juridic&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[5])">⚖</button>
-  <button class="sb-icon" title="Conector" onclick="showPage(&#39;conector&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[6])">⊛</button>
-  <div class="sb-divider"></div>
-  <button class="sb-icon" title="Clienți" onclick="showPage(&#39;crm&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[7])">⊠</button>
+<aside class="sb">
+  <button class="sb-ic active" title="Dashboard" onclick="go(&#39;dashboard&#39;,document.querySelector(&#39;.tb-t&#39;))">⊞</button>
+  <button class="sb-ic" title="Lucrare nouă" onclick="go(&#39;lucrare&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[1])">⊕</button>
+  <button class="sb-ic" title="Documente client" onclick="go(&#39;documente-client&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[2])">⊡</button>
+  <button class="sb-ic" title="Import teren" onclick="go(&#39;import&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[3])">⇪</button>
+  <div class="sb-div"></div>
+  <button class="sb-ic" title="Hartă" onclick="go(&#39;harta&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[4])">⊟</button>
+  <button class="sb-ic" title="Generator" onclick="go(&#39;generator&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[5])" style="position:relative">⊠<div class="sb-pip"></div></button>
+  <button class="sb-ic" title="Juridic" onclick="go(&#39;juridic&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[6])">⚖</button>
+  <div class="sb-div"></div>
+  <button class="sb-ic" title="Conector" onclick="go(&#39;conector&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[7])">⊛</button>
+  <button class="sb-ic" title="Dosare" onclick="go(&#39;dosare&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[8])">☰</button>
 </aside>
 
-<!-- ═══ PANEL LEFT ═══ -->
-<div class="panel-left">
-  <div class="pl-head">
-    Explorer
-    <span style="font-size:9px;cursor:pointer;color:var(--t3)">⊕</span>
-  </div>
-  <div class="pl-body">
-    <div class="tree-group">
-      <div class="tree-label">▾ Lucrări active</div>
-      <button class="tree-item active" onclick="showPage(&#39;harta&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[3])">
-        <div class="tree-dot td-ok"></div>Dezm. 34521/1
-        <span class="tree-badge tb-amber">acum</span>
-      </button>
-      <button class="tree-item" onclick="showPage(&#39;harta&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[3])">
-        <div class="tree-dot td-warn"></div>Alipire 12034/2
-      </button>
-      <button class="tree-item">
-        <div class="tree-dot td-idle"></div>Ridicare Parcul C.
-      </button>
-    </div>
-    <div class="tree-group">
-      <div class="tree-label">▾ Surse date</div>
-      <button class="tree-item" id="pl-ancpi">
-        <div class="tree-dot td-ok" id="pldot-ancpi"></div>ANCPI Geoportal
-      </button>
-      <button class="tree-item" id="pl-eterra">
-        <div class="tree-dot td-ok" id="pldot-eterra"></div>e-Terra CF
-      </button>
-      <button class="tree-item" id="pl-inhga">
-        <div class="tree-dot td-warn" id="pldot-inhga"></div>INHGA
-        <span class="tree-badge tb-red">!</span>
-      </button>
-      <button class="tree-item" id="pl-natura">
-        <div class="tree-dot td-ok" id="pldot-natura"></div>Natura 2000
-      </button>
-      <button class="tree-item" id="pl-copernicus">
-        <div class="tree-dot td-ok" id="pldot-copernicus"></div>Copernicus DEM
-      </button>
-      <button class="tree-item" id="pl-monof">
-        <div class="tree-dot td-ok" id="pldot-monof"></div>Monitor Oficial
-      </button>
-    </div>
-    <div class="tree-group">
-      <div class="tree-label">▾ Documente</div>
-      <button class="tree-item" onclick="showPage(&#39;documente&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[4])">
-        <div class="tree-dot td-ok"></div>Plan amplasament
-      </button>
-      <button class="tree-item" onclick="showPage(&#39;documente&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[4])">
-        <div class="tree-dot td-ok"></div>Memoriu tehnic
-      </button>
-      <button class="tree-item" onclick="showPage(&#39;documente&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[4])">
-        <div class="tree-dot td-warn"></div>Cerere ANCPI
-        <span class="tree-badge tb-amber">∅</span>
-      </button>
-    </div>
-    <div class="tree-group">
-      <div class="tree-label">▾ Alerte</div>
-      <button class="tree-item" onclick="showPage(&#39;juridic&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[5])">
-        <div class="tree-dot td-err"></div>Ord.700/2014 mod.
-        <span class="tree-badge tb-red">!</span>
-      </button>
-      <button class="tree-item">
-        <div class="tree-dot td-warn"></div>Termen 18.04
-      </button>
-    </div>
+<div class="ex">
+  <div class="ex-h">Explorer<span style="cursor:pointer">⊕</span></div>
+  <div class="ex-body">
+    <div class="ex-lbl">Lucrare curentă</div>
+    <button class="ex-item active"><div class="dot d-ok"></div>Dosar activ<span class="ex-badge eb-a">în lucru</span></button>
+    <button class="ex-item" onclick="go(&#39;documente-client&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[2])"><div class="dot d-warn"></div>Documente client<span class="ex-badge eb-a">3</span></button>
+    <button class="ex-item" onclick="go(&#39;import&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[3])"><div class="dot d-ok"></div>Măsurători importate</button>
+    <button class="ex-item" onclick="go(&#39;harta&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[4])"><div class="dot d-ok"></div>Hartă &amp; layere</button>
+    <button class="ex-item" onclick="go(&#39;generator&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[5])"><div class="dot d-warn"></div>Documente generate<span class="ex-badge eb-r">!</span></button>
+    <div class="ex-lbl">Surse date</div>
+    <button class="ex-item"><div class="dot d-ok" id="exd-ancpi"></div>ANCPI Geoportal</button>
+    <button class="ex-item"><div class="dot d-warn" id="exd-inhga"></div>INHGA<span class="ex-badge eb-r">alertă</span></button>
+    <button class="ex-item"><div class="dot d-ok" id="exd-natura"></div>Natura 2000</button>
+    <button class="ex-item"><div class="dot d-ok" id="exd-monof"></div>Monitor Oficial</button>
+    <div class="ex-lbl">Securitate</div>
+    <button class="ex-item"><div class="dot d-ok"></div>Bază date criptată</button>
+    <button class="ex-item"><div class="dot d-ok"></div>Zero cloud · local only</button>
+    <button class="ex-item"><div class="dot d-idle"></div>Backup HDD extern</button>
   </div>
 </div>
 
-<!-- ═══ MAIN ═══ -->
 <div class="main">
-<div class="prog-strip"><div class="prog-fill" id="progFill"></div></div>
+<div class="prog"><div class="prog-f" id="pf"></div></div>
 <div class="content">
 
-<!-- ▸ DASHBOARD ◂ -->
-<div class="page" id="page-dashboard">
-  <div class="pg-head">
-    <div>
-      <div class="pg-title">Dashboard</div>
-      <div class="pg-sub">OCPI Hunedoara · autorizat cat. C · joi 16.04.2026 · 08:34 UTC+2</div>
-    </div>
-    <div class="pg-actions">
-      <button class="btn" onclick="showPage(&#39;crm&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[7])">Rapoarte</button>
-      <button class="btn teal" onclick="showPage(&#39;lucrare&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[1])">+ Lucrare nouă</button>
+<!-- ══ DASHBOARD ══ -->
+<div class="page active" id="page-dashboard">
+  <div class="pg-h">
+    <div><div class="pg-title">Dashboard</div><div class="pg-sub">sistem topografic integrat · date locale · criptare AES-256</div></div>
+    <div class="pg-act">
+      <button class="btn teal" onclick="go(&#39;lucrare&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[1])">+ Lucrare nouă</button>
     </div>
   </div>
-
-  <div class="metrics">
-    <div class="metric teal"><div class="m-label">Lucrări active</div><div class="m-val">7</div><div class="m-sub">3 în lucru · 4 la ANCPI</div></div>
-    <div class="metric amber"><div class="m-label">Termene săpt.</div><div class="m-val">3</div><div class="m-sub">2 urgente · 1 normal</div></div>
-    <div class="metric"><div class="m-label">Dosare / lună</div><div class="m-val">12</div><div class="m-sub">+3 față de luna trecută</div></div>
-    <div class="metric red"><div class="m-label">Alerte juridice</div><div class="m-val">1</div><div class="m-sub">Ord.700/2014 modificat</div></div>
+  <div class="sec-guard">
+    <div class="sg-icon">🔒</div>
+    <div class="sg-text"><strong>Date 100% locale.</strong> Niciun document nu părăsește PC-ul. Baza de date este criptată AES-256. Tesseract OCR rulează offline. Zero cloud.</div>
   </div>
-
+  <div class="mets">
+    <div class="met tl"><div class="m-lbl">Dosare active</div><div class="m-val" id="cnt-active">0</div><div class="m-sub">în lucru</div></div>
+    <div class="met am"><div class="m-lbl">Termene săptămână</div><div class="m-val" id="cnt-term">0</div><div class="m-sub">de respectat</div></div>
+    <div class="met"><div class="m-lbl">Finalizate luna ac.</div><div class="m-val" id="cnt-fin">0</div><div class="m-sub">dosare complete</div></div>
+    <div class="met rd"><div class="m-lbl">Alerte juridice</div><div class="m-val" id="cnt-alerte">1</div><div class="m-sub">Ord.700/2014 mod.</div></div>
+  </div>
   <div class="g2">
     <div>
-      <div class="sec-label">Lucrări recente</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div class="ri" onclick="showPage(&#39;harta&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[3])">
-          <div class="ri-icon">DEZM</div>
-          <div><div class="ri-name">Dezmembrare 34521/1</div><div class="ri-sub">Popescu Ion · Hunedoara</div></div>
-          <div class="ri-right"><span class="sbadge sb-prog">În lucru</span><div class="ri-date">azi 08:14</div></div>
-        </div>
-        <div class="ri">
-          <div class="ri-icon" style="background:var(--amber3);color:var(--amber)">ALIP</div>
-          <div><div class="ri-name">Alipire 12034/2 + 12035</div><div class="ri-sub">SC Construct SRL · Brad</div></div>
-          <div class="ri-right"><span class="sbadge sb-wait">La ANCPI</span><div class="ri-date">12.04</div></div>
-        </div>
-        <div class="ri">
-          <div class="ri-icon" style="background:var(--blue3);color:var(--blue)">INS</div>
-          <div><div class="ri-name">Prima înscriere 88901</div><div class="ri-sub">Mureșan Vasile · Orăștie</div></div>
-          <div class="ri-right"><span class="sbadge sb-done">Finalizat</span><div class="ri-date">10.04</div></div>
-        </div>
-        <div class="ri">
-          <div class="ri-icon">RID</div>
-          <div><div class="ri-name">Ridicare Parcul Central</div><div class="ri-sub">Primăria Hunedoara</div></div>
-          <div class="ri-right"><span class="sbadge sb-prog">În lucru</span><div class="ri-date">09.04</div></div>
-        </div>
-      </div>
+      <div class="sec-lbl">Dosare recente</div>
+      <div class="dosare-list" id="dosare-recente"><div style="padding:20px;text-align:center;font-size:11px;color:var(--t3);font-family:var(--mono)">Niciun dosar creat încă.<br>Apasă + Lucrare nouă pentru a începe.</div></div>
     </div>
     <div>
-      <div class="sec-label">Alerte sistem</div>
+      <div class="sec-lbl">Alerte sistem</div>
       <div style="display:flex;flex-direction:column;gap:6px">
-        <div class="alert err"><div class="alert-dot" style="background:var(--red)"></div><div class="alert-txt"><strong>Ord. ANCPI 700/2014 modificat</strong> — Art.58-59 actualizate ian.2024. Verifică înainte de depunerea dosarului 34521/1.</div></div>
-        <div class="alert warn"><div class="alert-dot" style="background:var(--amber)"></div><div class="alert-txt"><strong>Termen aproape</strong> — Dosarul SC Construct SRL trebuie depus până 18.04.2026.</div></div>
-        <div class="alert warn"><div class="alert-dot" style="background:var(--amber)"></div><div class="alert-txt"><strong>Aviz Apele Române expirat</strong> — Lucrarea Mureșan necesită aviz nou emis după ian.2026.</div></div>
-        <div class="alert ok"><div class="alert-dot" style="background:var(--teal)"></div><div class="alert-txt"><strong>Recepție confirmată</strong> — Dosar Popescu Maria nr.32115 a primit număr cadastral nou.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="sec-label">Statistici lunare</div>
-    <div class="g3">
-      <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--teal3);color:var(--teal)">KPI</div><div class="ph-title">Productivitate</div></div>
-        <div class="panel-body">
-          <div class="dr"><span class="dr-k">Lucrări/lună</span><span class="dr-v">12</span></div>
-          <div class="dr"><span class="dr-k">Timp mediu dosar</span><span class="dr-v">4.2 zile</span></div>
-          <div class="dr"><span class="dr-k">Rată recepție</span><span class="dr-v"><span class="tag tg-ok">94%</span></span></div>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--amber3);color:var(--amber)">RON</div><div class="ph-title">Facturare</div></div>
-        <div class="panel-body">
-          <div class="dr"><span class="dr-k">Luna curentă</span><span class="dr-v">8.400 RON</span></div>
-          <div class="dr"><span class="dr-k">Restanțe</span><span class="dr-v">1.200 RON</span></div>
-          <div class="dr"><span class="dr-k">vs luna trecută</span><span class="dr-v"><span class="tag tg-ok">+18%</span></span></div>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--blue3);color:var(--blue)">TIP</div><div class="ph-title">Tip lucrări</div></div>
-        <div class="panel-body">
-          <div class="dr"><span class="dr-k">Dezmembrări</span><span class="dr-v">4</span></div>
-          <div class="dr"><span class="dr-k">Prime înscrieri</span><span class="dr-v">3</span></div>
-          <div class="dr"><span class="dr-k">Alipiri + ridicări</span><span class="dr-v">5</span></div>
-        </div>
+        <div class="alert err"><div class="a-dot" style="background:var(--red)"></div><div class="a-txt"><strong>Ord. ANCPI 700/2014 modificat</strong> — Art.58-59 actualizate ian.2024. Verifică înainte de orice depunere.</div></div>
+        <div class="alert ok"><div class="a-dot" style="background:var(--teal)"></div><div class="a-txt"><strong>Surse date active</strong> — ANCPI, INHGA, Natura 2000, Monitor Oficial sincronizate.</div></div>
+        <div class="alert ok"><div class="a-dot" style="background:var(--teal)"></div><div class="a-txt"><strong>OCR motor activ</strong> — Tesseract 5.x local instalat. Procesare offline disponibilă.</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ▸ LUCRARE NOUĂ ◂ -->
-<div class="page active" id="page-lucrare">
-  <div class="pg-head">
-    <div><div class="pg-title">Lucrare nouă</div><div class="pg-sub">wizard · 6 pași · completare automată din ANCPI disponibilă</div></div>
+<!-- ══ LUCRARE NOUĂ ══ -->
+<div class="page" id="page-lucrare">
+  <div class="pg-h">
+    <div><div class="pg-title">Lucrare nouă</div><div class="pg-sub">wizard · completare pas cu pas · date salvate local criptat</div></div>
   </div>
-  <div class="wizard">
-    <div class="wz-step done"><div class="wz-circle">✓</div><div class="wz-label">Tip<br>lucrare</div></div>
-    <div class="wz-step active"><div class="wz-circle">2</div><div class="wz-label">Date<br>parcelă</div></div>
-    <div class="wz-step"><div class="wz-circle">3</div><div class="wz-label">Client</div></div>
-    <div class="wz-step"><div class="wz-circle">4</div><div class="wz-label">Import<br>date</div></div>
-    <div class="wz-step"><div class="wz-circle">5</div><div class="wz-label">Verificare<br>AI</div></div>
-    <div class="wz-step"><div class="wz-circle">6</div><div class="wz-label">Generare<br>docs</div></div>
+  <div class="wz">
+    <div class="wz-s done"><div class="wz-c">✓</div><div class="wz-lbl">Tip</div></div>
+    <div class="wz-s now"><div class="wz-c">2</div><div class="wz-lbl">Parcelă</div></div>
+    <div class="wz-s"><div class="wz-c">3</div><div class="wz-lbl">Client</div></div>
+    <div class="wz-s"><div class="wz-c">4</div><div class="wz-lbl">Documente</div></div>
+    <div class="wz-s"><div class="wz-c">5</div><div class="wz-lbl">Măsurători</div></div>
+    <div class="wz-s"><div class="wz-c">6</div><div class="wz-lbl">Generare</div></div>
   </div>
   <div class="g2">
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--teal3);color:var(--teal)">TIP</div><div class="ph-title">Selectează tip lucrare</div></div>
-        <div class="panel-body">
-          <div class="lc-grid" style="grid-template-columns:1fr 1fr">
-            <div class="lc sel"><div class="lc-type">Selectat</div><div class="lc-name">Dezmembrare</div><div class="lc-sub">dezlipire parcelă</div></div>
-            <div class="lc"><div class="lc-name">Alipire</div><div class="lc-sub">unire parcele</div></div>
-            <div class="lc"><div class="lc-name">Prima înscriere</div><div class="lc-sub">înregistrare CF</div></div>
-            <div class="lc"><div class="lc-name">Ridicare topo</div><div class="lc-sub">măsurătoare teren</div></div>
-            <div class="lc"><div class="lc-name">Trasare</div><div class="lc-sub">trasare limite</div></div>
-            <div class="lc"><div class="lc-name">Actualizare</div><div class="lc-sub">date tehnice</div></div>
+        <div class="ph"><div class="ph-ico" style="background:var(--teal3);color:var(--teal)">TIP</div><div class="ph-title">Tip lucrare</div></div>
+        <div class="pb">
+          <div class="lc-g">
+            <div class="lc sel"><div class="lc-tp">Selectat</div><div class="lc-nm">Dezmembrare</div><div class="lc-sb">dezlipire parcelă</div></div>
+            <div class="lc" onclick="selectLc(this)"><div class="lc-nm">Alipire</div><div class="lc-sb">unire parcele</div></div>
+            <div class="lc" onclick="selectLc(this)"><div class="lc-nm">Prima înscriere</div><div class="lc-sb">înregistrare CF</div></div>
+            <div class="lc" onclick="selectLc(this)"><div class="lc-nm">Ridicare topo</div><div class="lc-sb">măsurătoare</div></div>
+            <div class="lc" onclick="selectLc(this)"><div class="lc-nm">Trasare</div><div class="lc-sb">trasare limite</div></div>
+            <div class="lc" onclick="selectLc(this)"><div class="lc-nm">Actualizare</div><div class="lc-sb">date tehnice</div></div>
           </div>
         </div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--amber3);color:var(--amber)">DATE</div><div class="ph-title">Date parcelă</div></div>
-        <div class="panel-body">
-          <div class="form-grid">
-            <div class="ff"><label>Nr. cadastral</label><input type="text" value="34521/1"></div>
-            <div class="ff"><label>Nr. CF</label><input type="text" value="CF 45821"></div>
-            <div class="ff"><label>UAT / Localitate</label><input type="text" value="Hunedoara"></div>
+        <div class="ph"><div class="ph-ico" style="background:var(--amber3);color:var(--amber)">DATE</div><div class="ph-title">Date parcelă</div></div>
+        <div class="pb">
+          <div class="fg">
+            <div class="ff"><label>Nr. cadastral</label><input type="text" placeholder="ex: 34521/1" id="luc-cad"></div>
+            <div class="ff"><label>Nr. CF</label><input type="text" placeholder="ex: CF 45821" id="luc-cf"></div>
+            <div class="ff"><label>UAT / Localitate</label><input type="text" placeholder="ex: Hunedoara" id="luc-uat"></div>
             <div class="ff"><label>Județ</label>
-              <select><option>Hunedoara</option><option>Alba</option><option>Cluj</option><option>Timiș</option></select>
+              <select id="luc-jud"><option value="">— selectează —</option><option>Alba</option><option>Arad</option><option>Cluj</option><option>Hunedoara</option><option>Timiș</option></select>
             </div>
-            <div class="ff" style="grid-column:1/-1"><label>Adresă amplasament</label><input type="text" value="str. Mihai Viteazu nr. 12, Hunedoara"></div>
+            <div class="ff" style="grid-column:1/-1"><label>Adresă / amplasament</label><input type="text" placeholder="Stradă, număr, localitate" id="luc-adr"></div>
+            <div class="ff" style="grid-column:1/-1"><label>Observații</label><textarea placeholder="Note opționale..." id="luc-obs"></textarea></div>
           </div>
-          <div class="actions" style="margin-top:6px">
-            <button class="btn teal" onclick="showPage(&#39;import&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[2])">Continuă → Import date</button>
-            <button class="btn">Completare auto ANCPI</button>
+          <div class="acts" style="margin-top:6px">
+            <button class="btn teal" onclick="salveazaLucrare()">Salvează &amp; continuă →</button>
+            <button class="btn" onclick="go(&#39;documente-client&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[2])">Adaugă documente client →</button>
           </div>
         </div>
-      </div>
-      <div class="coord-box">
-        <span>Stereo70 ·</span> X: 382145.234 &nbsp;<span>·</span>&nbsp; Y: 283421.118 &nbsp;<span>·</span>&nbsp; <span class="tag tg-ok">WGS84 ready</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ▸ IMPORT ◂ -->
-<div class="page" id="page-import">
-  <div class="pg-head">
-    <div><div class="pg-title">Import măsurători</div><div class="pg-sub">detectare automată format · conversie Stereo70 ↔ WGS84 · validare outlieri</div></div>
+<!-- ══ DOCUMENTE CLIENT (OCR) ══ -->
+<div class="page" id="page-documente-client">
+  <div class="pg-h">
+    <div><div class="pg-title">Documente client</div><div class="pg-sub">OCR local · extragere automată date · procesare offline · date rămân pe PC</div></div>
   </div>
-  <div class="dropzone" onclick="alert(&#39;Selectare fișier — în aplicația reală&#39;)">
-    <div class="dz-icon">⇪</div>
-    <div class="dz-title">Trage fișierele din GPS / stație totală</div>
-    <div class="dz-sub">auto-detect format · conversie coordonate automată</div>
-    <div class="dz-formats">
-      <span class="dz-fmt">.csv</span><span class="dz-fmt">.txt</span><span class="dz-fmt">.gsi Leica</span>
-      <span class="dz-fmt">.job Trimble</span><span class="dz-fmt">.gpx</span><span class="dz-fmt">.dxf</span>
-      <span class="dz-fmt">.las/.laz</span><span class="dz-fmt">LandXML</span>
+  <div class="sec-guard" style="margin-bottom:4px">
+    <div class="sg-icon" style="font-size:12px">🔒</div>
+    <div class="sg-text">Documentele sunt procesate de <strong>Tesseract OCR local</strong> — niciun fișier nu este trimis în cloud. Datele extrase sunt salvate criptat pe PC-ul tău.</div>
+  </div>
+  <div class="doc-tabs" style="background:var(--bg2);border:1px solid var(--ln);border-radius:var(--r2);margin-bottom:4px">
+    <button class="doc-tab active" onclick="switchDocTab(this,&#39;tab-bi&#39;)">Buletin / CI</button>
+    <button class="doc-tab" onclick="switchDocTab(this,&#39;tab-cf&#39;)">Extras CF</button>
+    <button class="doc-tab" onclick="switchDocTab(this,&#39;tab-contract&#39;)">Contract</button>
+    <button class="doc-tab" onclick="switchDocTab(this,&#39;tab-titlu&#39;)">Titlu proprietate</button>
+    <button class="doc-tab" onclick="switchDocTab(this,&#39;tab-ac&#39;)">Autorizație</button>
+    <button class="doc-tab" onclick="switchDocTab(this,&#39;tab-altul&#39;)">Alt document</button>
+  </div>
+
+  <!-- TAB: BULETIN -->
+  <div id="tab-bi" class="tab-content">
+    <div class="ocr-layout">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="doc-preview">
+          <div class="doc-preview-head">
+            <div class="dot d-idle" id="bi-status"></div>
+            <span id="bi-filename" style="font-family:var(--mono)">niciun fișier selectat</span>
+            <span class="tag t-gray" style="margin-left:auto" id="bi-type-tag">CI / Pașaport</span>
+          </div>
+          <div class="doc-preview-body" id="bi-preview">
+            <div style="text-align:center;color:var(--t3)">
+              <div style="font-size:28px;margin-bottom:10px;opacity:.4">⊡</div>
+              <div style="font-size:11px;font-family:var(--mono)">Previzualizare document</div>
+            </div>
+          </div>
+        </div>
+        <button class="scan-btn primary" onclick="simulateOCR(&#39;bi&#39;)">▶ Procesează OCR local</button>
+        <button class="scan-btn" onclick="document.getElementById(&#39;file-bi&#39;).click()">⇪ Upload fișier PDF / JPG</button>
+        <input type="file" id="file-bi" accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="handleFile(this,&#39;bi&#39;)">
+        <button class="scan-btn" onclick="simulateCamera(&#39;bi&#39;)">◉ Captură cameră / scanner</button>
+        <div id="bi-conf" style="display:none">
+          <div style="font-size:9px;color:var(--t3);font-family:var(--mono);margin-bottom:4px">SCOR ÎNCREDERE OCR</div>
+          <div class="conf-score"><span style="font-size:10px;font-family:var(--mono);color:var(--teal);min-width:28px" id="bi-conf-val">—</span><div class="cs-bar"><div class="cs-fill" id="bi-conf-bar" style="width:0%"></div></div></div>
+        </div>
+      </div>
+      <div class="extract-panel" id="bi-fields">
+        <div style="font-size:10px;color:var(--t3);font-family:var(--mono);padding:8px 0">Câmpurile extrase apar după procesare OCR.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: CF -->
+  <div id="tab-cf" class="tab-content" style="display:none">
+    <div class="ocr-layout">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="doc-preview">
+          <div class="doc-preview-head">
+            <div class="dot d-idle" id="cf-status"></div>
+            <span id="cf-filename" style="font-family:var(--mono)">niciun fișier selectat</span>
+            <span class="tag t-gray" style="margin-left:auto">Extras CF</span>
+          </div>
+          <div class="doc-preview-body" id="cf-preview">
+            <div style="text-align:center;color:var(--t3)"><div style="font-size:28px;margin-bottom:10px;opacity:.4">⊡</div><div style="font-size:11px;font-family:var(--mono)">Previzualizare extras CF</div></div>
+          </div>
+        </div>
+        <button class="scan-btn primary" onclick="simulateOCR(&#39;cf&#39;)">▶ Procesează OCR local</button>
+        <button class="scan-btn" onclick="document.getElementById(&#39;file-cf&#39;).click()">⇪ Upload PDF extras CF</button>
+        <input type="file" id="file-cf" accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="handleFile(this,&#39;cf&#39;)">
+        <div id="cf-conf" style="display:none">
+          <div style="font-size:9px;color:var(--t3);font-family:var(--mono);margin-bottom:4px">SCOR ÎNCREDERE OCR</div>
+          <div class="conf-score"><span style="font-size:10px;font-family:var(--mono);color:var(--teal);min-width:28px" id="cf-conf-val">—</span><div class="cs-bar"><div class="cs-fill" id="cf-conf-bar" style="width:0%"></div></div></div>
+        </div>
+      </div>
+      <div class="extract-panel" id="cf-fields">
+        <div style="font-size:10px;color:var(--t3);font-family:var(--mono);padding:8px 0">Câmpurile extrase apar după procesare OCR.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: CONTRACT -->
+  <div id="tab-contract" class="tab-content" style="display:none">
+    <div class="ocr-layout">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="doc-preview">
+          <div class="doc-preview-head"><div class="dot d-idle" id="ct-status"></div><span id="ct-filename" style="font-family:var(--mono)">niciun fișier selectat</span><span class="tag t-gray" style="margin-left:auto">Contract V-C</span></div>
+          <div class="doc-preview-body" id="ct-preview"><div style="text-align:center;color:var(--t3)"><div style="font-size:28px;margin-bottom:10px;opacity:.4">⊡</div><div style="font-size:11px;font-family:var(--mono)">Previzualizare contract</div></div></div>
+        </div>
+        <button class="scan-btn primary" onclick="simulateOCR(&#39;ct&#39;)">▶ Procesează OCR local</button>
+        <button class="scan-btn" onclick="document.getElementById(&#39;file-ct&#39;).click()">⇪ Upload PDF contract</button>
+        <input type="file" id="file-ct" accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="handleFile(this,&#39;ct&#39;)">
+        <div id="ct-conf" style="display:none"><div style="font-size:9px;color:var(--t3);font-family:var(--mono);margin-bottom:4px">SCOR ÎNCREDERE OCR</div><div class="conf-score"><span style="font-size:10px;font-family:var(--mono);color:var(--teal);min-width:28px" id="ct-conf-val">—</span><div class="cs-bar"><div class="cs-fill" id="ct-conf-bar" style="width:0%"></div></div></div></div>
+      </div>
+      <div class="extract-panel" id="ct-fields"><div style="font-size:10px;color:var(--t3);font-family:var(--mono);padding:8px 0">Câmpurile extrase apar după procesare OCR.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB: TITLU -->
+  <div id="tab-titlu" class="tab-content" style="display:none">
+    <div class="ocr-layout">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="doc-preview"><div class="doc-preview-head"><div class="dot d-idle"></div><span style="font-family:var(--mono)">niciun fișier selectat</span><span class="tag t-gray" style="margin-left:auto">Titlu proprietate</span></div><div class="doc-preview-body"><div style="text-align:center;color:var(--t3)"><div style="font-size:28px;margin-bottom:10px;opacity:.4">⊡</div><div style="font-size:11px;font-family:var(--mono)">Previzualizare titlu</div></div></div></div>
+        <button class="scan-btn primary" onclick="simulateOCR(&#39;tp&#39;)">▶ Procesează OCR local</button>
+        <button class="scan-btn" onclick="alert(&#39;Selectare fișier&#39;)">⇪ Upload titlu proprietate</button>
+        <div id="tp-conf" style="display:none"><div class="conf-score"><span style="font-size:10px;font-family:var(--mono);color:var(--teal);min-width:28px" id="tp-conf-val">—</span><div class="cs-bar"><div class="cs-fill" id="tp-conf-bar" style="width:0%"></div></div></div></div>
+      </div>
+      <div class="extract-panel" id="tp-fields"><div style="font-size:10px;color:var(--t3);font-family:var(--mono);padding:8px 0">Câmpurile extrase apar după procesare OCR.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB: AUTORIZATIE -->
+  <div id="tab-ac" class="tab-content" style="display:none">
+    <div class="ocr-layout">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="doc-preview"><div class="doc-preview-head"><div class="dot d-idle"></div><span style="font-family:var(--mono)">niciun fișier selectat</span><span class="tag t-gray" style="margin-left:auto">Autorizație</span></div><div class="doc-preview-body"><div style="text-align:center;color:var(--t3)"><div style="font-size:28px;margin-bottom:10px;opacity:.4">⊡</div></div></div></div>
+        <button class="scan-btn primary" onclick="simulateOCR(&#39;ac&#39;)">▶ Procesează OCR local</button>
+        <button class="scan-btn" onclick="alert(&#39;Selectare fișier&#39;)">⇪ Upload autorizație</button>
+        <div id="ac-conf" style="display:none"><div class="conf-score"><span id="ac-conf-val" style="font-size:10px;font-family:var(--mono);color:var(--teal);min-width:28px">—</span><div class="cs-bar"><div class="cs-fill" id="ac-conf-bar" style="width:0%"></div></div></div></div>
+      </div>
+      <div class="extract-panel" id="ac-fields"><div style="font-size:10px;color:var(--t3);font-family:var(--mono);padding:8px 0">Câmpurile extrase apar după procesare OCR.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB: ALT DOC -->
+  <div id="tab-altul" class="tab-content" style="display:none">
+    <div class="ocr-layout">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="doc-preview"><div class="doc-preview-head"><div class="dot d-idle"></div><span style="font-family:var(--mono)">niciun fișier selectat</span><span class="tag t-gray" style="margin-left:auto">Document necunoscut</span></div><div class="doc-preview-body"><div style="text-align:center;color:var(--t3)"><div style="font-size:28px;margin-bottom:10px;opacity:.4">⊡</div><div style="font-size:11px;font-family:var(--mono)">AI detectează tipul automat</div></div></div></div>
+        <button class="scan-btn primary" onclick="simulateOCR(&#39;alt&#39;)">▶ Procesează &amp; detectează tip</button>
+        <button class="scan-btn" onclick="alert(&#39;Selectare fișier&#39;)">⇪ Upload orice document</button>
+        <div id="alt-conf" style="display:none"><div class="conf-score"><span id="alt-conf-val" style="font-size:10px;font-family:var(--mono);color:var(--teal);min-width:28px">—</span><div class="cs-bar"><div class="cs-fill" id="alt-conf-bar" style="width:0%"></div></div></div></div>
+      </div>
+      <div class="extract-panel" id="alt-fields"><div style="font-size:10px;color:var(--t3);font-family:var(--mono);padding:8px 0">AI local detectează tipul documentului și extrage câmpurile relevante.</div></div>
+    </div>
+  </div>
+
+  <div class="acts">
+    <button class="btn teal" onclick="go(&#39;import&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[3])">Continuă → Import măsurători</button>
+    <button class="btn">Adaugă alt document</button>
+    <button class="btn">Vizualizează toate documentele</button>
+  </div>
+</div>
+
+<!-- ══ IMPORT TEREN ══ -->
+<div class="page" id="page-import">
+  <div class="pg-h">
+    <div><div class="pg-title">Import măsurători</div><div class="pg-sub">GPS / stație totală · detectare auto format · Stereo70 ↔ WGS84</div></div>
+  </div>
+  <div class="dz" onclick="alert(&#39;Selectare fișier măsurători&#39;)">
+    <div style="font-size:24px;margin-bottom:8px;opacity:.5">⇪</div>
+    <div class="dz-t">Trage fișierele din GPS sau stație totală</div>
+    <div class="dz-s">detectare auto format · conversie coordonate automată · validare outlieri</div>
+    <div class="dz-fmts">
+      <span class="dz-f">.csv</span><span class="dz-f">.txt</span><span class="dz-f">.gsi Leica</span>
+      <span class="dz-f">.job Trimble</span><span class="dz-f">.gpx</span><span class="dz-f">.dxf</span>
+      <span class="dz-f">.las/.laz</span><span class="dz-f">LandXML</span>
     </div>
   </div>
   <div class="g2">
     <div class="panel">
-      <div class="panel-head">
-        <div class="ph-icon" style="background:var(--teal3);color:var(--teal)">PTS</div>
-        <div class="ph-title">statie_16apr.csv — 14 puncte</div>
-        <span class="tag tg-ok">Stereo70 · valid</span>
-      </div>
-      <div style="overflow-x:auto">
+      <div class="ph"><div class="ph-ico" style="background:var(--teal3);color:var(--teal)">PTS</div><div class="ph-title">Puncte importate</div><span class="tag t-gray">în așteptare</span></div>
+      <div class="pb" style="padding:0">
         <table class="tbl">
           <thead><tr><th>Nr.</th><th>Cod</th><th>X (N)</th><th>Y (E)</th><th>Z (H)</th><th>Obs.</th></tr></thead>
-          <tbody>
-            <tr><td>1001</td><td>C1</td><td>382145.234</td><td>283421.118</td><td>278.45</td><td>col NV</td></tr>
-            <tr><td>1002</td><td>C2</td><td>382192.877</td><td>283418.332</td><td>278.52</td><td>col NE</td></tr>
-            <tr><td>1003</td><td>C3</td><td>382195.441</td><td>283378.119</td><td>278.38</td><td>col SE</td></tr>
-            <tr><td>1004</td><td>C4</td><td>382148.223</td><td>283380.774</td><td>278.41</td><td>col SV</td></tr>
-            <tr><td>1005</td><td>DR</td><td>382141.009</td><td>283399.447</td><td>278.29</td><td>drum</td></tr>
-            <tr><td>1006</td><td>LZ</td><td>382170.112</td><td>283400.228</td><td>278.48</td><td>linie dezm.</td></tr>
+          <tbody id="pts-body">
+            <tr><td colspan="6" style="text-align:center;color:var(--t3);padding:20px;font-family:var(--sans)">Importă un fișier pentru a vedea punctele</td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--amber3);color:var(--amber)">CONV</div><div class="ph-title">Convertor coordonate</div></div>
-        <div class="panel-body">
-          <div class="dr"><span class="dr-k">Sistem sursă</span><span class="dr-v"><span class="tag tg-ok">Stereo70</span></span></div>
-          <div class="dr"><span class="dr-k">Sistem țintă</span><span class="dr-v"><span class="tag tg-blue">WGS84/ETRS89</span></span></div>
-          <div class="dr"><span class="dr-k">Metodă</span><span class="dr-v">PROJ.4 + NTv2 RO</span></div>
-          <div class="dr"><span class="dr-k">Precizie estimată</span><span class="dr-v"><span class="tag tg-ok">± 3cm</span></span></div>
+        <div class="ph"><div class="ph-ico" style="background:var(--amber3);color:var(--amber)">CONV</div><div class="ph-title">Convertor coordonate</div></div>
+        <div class="pb">
+          <div class="dr"><span class="dk">Sistem sursă</span><span class="dv"><span class="tag t-ok">Stereo70</span></span></div>
+          <div class="dr"><span class="dk">Sistem țintă</span><span class="dv"><span class="tag t-blue">WGS84/ETRS89</span></span></div>
+          <div class="dr"><span class="dk">Metodă</span><span class="dv">PROJ.4 + NTv2 RO</span></div>
+          <div class="dr"><span class="dk">Precizie</span><span class="dv"><span class="tag t-ok">± 3cm</span></span></div>
           <div class="divhr"></div>
-          <div class="dr"><span class="dr-k">Suprafață calculată</span><span class="dr-v">2.851 mp</span></div>
-          <div class="dr"><span class="dr-k">Perimetru</span><span class="dr-v">217.34 m</span></div>
-          <div class="dr"><span class="dr-k">Diferență față de CF</span><span class="dr-v"><span class="tag tg-ok">+4mp · în toleranță</span></span></div>
+          <div class="dr"><span class="dk">Suprafață calculată</span><span class="dv" id="imp-sup">—</span></div>
+          <div class="dr"><span class="dk">Perimetru</span><span class="dv" id="imp-per">—</span></div>
+          <div class="dr"><span class="dk">Diferență față de CF</span><span class="dv" id="imp-diff">—</span></div>
         </div>
       </div>
-      <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--red3);color:var(--red)">VAL</div><div class="ph-title">Validare automată</div></div>
-        <div class="panel-body">
-          <div class="alert ok"><div class="alert-dot" style="background:var(--teal)"></div><div class="alert-txt">14/14 puncte importate — niciun outlier detectat</div></div>
-          <div class="alert warn"><div class="alert-dot" style="background:var(--amber)"></div><div class="alert-txt">Pct. 1006 (linie dezm.) — verifică poziția față de vecini CF</div></div>
-        </div>
-      </div>
-      <button class="btn teal" onclick="showPage(&#39;harta&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[3])" style="width:100%">Vizualizare pe hartă →</button>
+      <button class="btn teal" onclick="simulateImport()" style="width:100%">▶ Simulează import fișier demo</button>
+      <button class="btn" onclick="go(&#39;harta&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[4])" style="width:100%">Vizualizare pe hartă →</button>
     </div>
   </div>
 </div>
 
-<!-- ▸ HARTĂ ◂ -->
+<!-- ══ HARTĂ ══ -->
 <div class="page" id="page-harta">
-  <div class="pg-head">
-    <div><div class="pg-title">Hartă &amp; vizualizare spațială</div><div class="pg-sub">parcelă 34521/1 · Hunedoara · Stereo70 · layere ANCPI active</div></div>
-    <div class="pg-actions">
+  <div class="pg-h">
+    <div><div class="pg-title">Hartă &amp; vizualizare spațială</div><div class="pg-sub">parcelă suprapusă · layere ANCPI · zone riscuri · Stereo70</div></div>
+    <div class="pg-act">
       <button class="btn">Export KML</button>
       <button class="btn">Export DXF</button>
-      <button class="btn teal" onclick="showPage(&#39;documente&#39;,document.querySelectorAll(&#39;.tb-tab&#39;)[4])">Generează plan →</button>
+      <button class="btn teal" onclick="go(&#39;generator&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[5])">Generează documente →</button>
     </div>
   </div>
-  <div class="map-wrap">
-    <svg class="map-svg" viewBox="0 0 820 370" xmlns="http://www.w3.org/2000/svg">
+  <div class="map-w">
+    <svg class="map-svg" viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <pattern id="mgrid" width="32" height="32" patternUnits="userSpaceOnUse">
-          <path d="M32 0L0 0 0 32" fill="none" stroke="rgba(0,212,170,0.07)" stroke-width="0.5"></path>
-        </pattern>
-        <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(255,92,92,0.35)" stroke-width="1.5"></line>
-        </pattern>
+        <pattern id="mgr" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0L0 0 0 32" fill="none" stroke="rgba(0,212,170,0.06)" stroke-width="0.5"></path></pattern>
+        <pattern id="ht" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="rgba(255,92,92,0.3)" stroke-width="1.5"></line></pattern>
       </defs>
-      <rect width="820" height="370" fill="#0f1c14"></rect>
-      <rect width="820" height="370" fill="url(#mgrid)"></rect>
-      <!-- roads -->
-      <rect x="0" y="158" width="820" height="16" fill="#1a2820" stroke="rgba(139,188,255,0.15)" stroke-width=".5"></rect>
-      <rect x="342" y="0" width="12" height="370" fill="#1a2820" stroke="rgba(139,188,255,0.1)" stroke-width=".5"></rect>
-      <text x="420" y="170" font-size="8" fill="rgba(139,188,255,0.4)" text-anchor="middle" font-family="JetBrains Mono,monospace">str. Mihai Viteazu</text>
-      <!-- neighboring parcels -->
-      <rect x="120" y="22" width="125" height="130" rx="3" fill="rgba(0,212,170,0.04)" stroke="rgba(0,212,170,0.18)" stroke-width=".7"></rect>
-      <text x="182" y="90" font-size="8" fill="rgba(0,212,170,0.45)" text-anchor="middle" font-family="JetBrains Mono,monospace">34520</text>
-      <rect x="368" y="22" width="135" height="130" rx="3" fill="rgba(0,212,170,0.04)" stroke="rgba(0,212,170,0.18)" stroke-width=".7"></rect>
-      <text x="435" y="90" font-size="8" fill="rgba(0,212,170,0.45)" text-anchor="middle" font-family="JetBrains Mono,monospace">34522</text>
-      <rect x="120" y="178" width="125" height="110" rx="3" fill="rgba(0,212,170,0.04)" stroke="rgba(0,212,170,0.18)" stroke-width=".7"></rect>
-      <text x="182" y="237" font-size="8" fill="rgba(0,212,170,0.45)" text-anchor="middle" font-family="JetBrains Mono,monospace">34519</text>
-      <!-- flood zone -->
-      <rect x="0" y="230" width="820" height="140" fill="url(#hatch)"></rect>
-      <text x="22" y="260" font-size="9" fill="rgba(255,92,92,0.7)" font-family="JetBrains Mono,monospace" font-weight="600">! ZONĂ INUNDABILĂ P1% · INHGA</text>
-      <!-- main parcel -->
-      <polygon points="250,25 365,25 365,152 250,152" fill="rgba(0,212,170,0.12)" stroke="#00d4aa" stroke-width="1.5"></polygon>
-      <!-- demembration line -->
-      <line x1="307" y1="25" x2="307" y2="152" stroke="#f0b429" stroke-width="1.5" stroke-dasharray="7,4"></line>
-      <!-- lot labels -->
-      <text x="276" y="88" font-size="9" fill="#00d4aa" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="600">LOT 1</text>
-      <text x="276" y="101" font-size="8" fill="rgba(0,212,170,0.6)" text-anchor="middle" font-family="JetBrains Mono,monospace">1.424 mp</text>
-      <text x="337" y="88" font-size="9" fill="#00d4aa" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="600">LOT 2</text>
-      <text x="337" y="101" font-size="8" fill="rgba(0,212,170,0.6)" text-anchor="middle" font-family="JetBrains Mono,monospace">1.427 mp</text>
-      <!-- corner points -->
-      <circle cx="250" cy="25" r="4" fill="#00d4aa" stroke="#0d1117" stroke-width="1.5"></circle>
-      <circle cx="365" cy="25" r="4" fill="#00d4aa" stroke="#0d1117" stroke-width="1.5"></circle>
-      <circle cx="365" cy="152" r="4" fill="#00d4aa" stroke="#0d1117" stroke-width="1.5"></circle>
-      <circle cx="250" cy="152" r="4" fill="#00d4aa" stroke="#0d1117" stroke-width="1.5"></circle>
-      <circle cx="307" cy="25" r="4" fill="#f0b429" stroke="#0d1117" stroke-width="1.5"></circle>
+      <rect width="820" height="360" fill="#0f1c14"></rect>
+      <rect width="820" height="360" fill="url(#mgr)"></rect>
+      <rect x="0" y="158" width="820" height="16" fill="#1a2820" stroke="rgba(139,188,255,0.12)" stroke-width=".5"></rect>
+      <rect x="340" y="0" width="12" height="370" fill="#1a2820" stroke="rgba(139,188,255,0.08)" stroke-width=".5"></rect>
+      <text x="420" y="170" font-size="8" fill="rgba(139,188,255,0.35)" text-anchor="middle" font-family="JetBrains Mono,monospace">drum public</text>
+      <rect x="118" y="20" width="128" height="132" rx="3" fill="rgba(0,212,170,0.03)" stroke="rgba(0,212,170,0.15)" stroke-width=".7"></rect>
+      <text x="182" y="89" font-size="8" fill="rgba(0,212,170,0.4)" text-anchor="middle" font-family="JetBrains Mono,monospace">parcelă vecină</text>
+      <rect x="368" y="20" width="138" height="132" rx="3" fill="rgba(0,212,170,0.03)" stroke="rgba(0,212,170,0.15)" stroke-width=".7"></rect>
+      <text x="437" y="89" font-size="8" fill="rgba(0,212,170,0.4)" text-anchor="middle" font-family="JetBrains Mono,monospace">parcelă vecină</text>
+      <rect x="118" y="178" width="128" height="112" rx="3" fill="rgba(0,212,170,0.03)" stroke="rgba(0,212,170,0.15)" stroke-width=".7"></rect>
+      <rect x="0" y="228" width="820" height="132" fill="url(#ht)"></rect>
+      <text x="20" y="255" font-size="9" fill="rgba(255,92,92,0.65)" font-family="JetBrains Mono,monospace" font-weight="600">! ZONĂ INUNDABILĂ P1% · INHGA</text>
+      <polygon points="248,24 366,24 366,152 248,152" fill="rgba(0,212,170,0.11)" stroke="#00d4aa" stroke-width="1.5"></polygon>
+      <line x1="307" y1="24" x2="307" y2="152" stroke="#f0b429" stroke-width="1.5" stroke-dasharray="7,4"></line>
+      <text x="275" y="86" font-size="9" fill="#00d4aa" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="600">LOT 1</text>
+      <text x="338" y="86" font-size="9" fill="#00d4aa" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="600">LOT 2</text>
+      <circle cx="248" cy="24" r="4" fill="#00d4aa" stroke="#0d1117" stroke-width="1.5"></circle>
+      <circle cx="366" cy="24" r="4" fill="#00d4aa" stroke="#0d1117" stroke-width="1.5"></circle>
+      <circle cx="366" cy="152" r="4" fill="#00d4aa" stroke="#0d1117" stroke-width="1.5"></circle>
+      <circle cx="248" cy="152" r="4" fill="#00d4aa" stroke="#0d1117" stroke-width="1.5"></circle>
+      <circle cx="307" cy="24" r="4" fill="#f0b429" stroke="#0d1117" stroke-width="1.5"></circle>
       <circle cx="307" cy="152" r="4" fill="#f0b429" stroke="#0d1117" stroke-width="1.5"></circle>
-      <!-- point labels -->
-      <text x="244" y="19" font-size="7" fill="rgba(0,212,170,0.7)" font-family="JetBrains Mono,monospace">1001</text>
-      <text x="358" y="19" font-size="7" fill="rgba(0,212,170,0.7)" font-family="JetBrains Mono,monospace">1002</text>
-      <text x="358" y="162" font-size="7" fill="rgba(0,212,170,0.7)" font-family="JetBrains Mono,monospace">1003</text>
-      <text x="240" y="162" font-size="7" fill="rgba(0,212,170,0.7)" font-family="JetBrains Mono,monospace">1004</text>
-      <!-- north + scale -->
-      <text x="760" y="38" font-size="13" fill="rgba(0,212,170,0.8)" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700">N</text>
-      <line x1="760" y1="42" x2="760" y2="62" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"></line>
-      <polygon points="760,40 756,57 764,57" fill="rgba(0,212,170,0.5)"></polygon>
-      <rect x="640" y="346" width="60" height="3" rx="1" fill="rgba(139,188,255,0.3)"></rect>
-      <rect x="640" y="346" width="30" height="3" rx="1" fill="rgba(139,188,255,0.6)"></rect>
-      <text x="640" y="360" font-size="7" fill="rgba(139,188,255,0.5)" font-family="JetBrains Mono,monospace">0    10   20m</text>
-      <text x="640" y="368" font-size="7" fill="rgba(139,188,255,0.35)" font-family="JetBrains Mono,monospace">scară 1:500 · Stereo70</text>
-      <text x="818" y="368" font-size="7" fill="rgba(139,188,255,0.25)" text-anchor="end" font-family="JetBrains Mono,monospace">© ANCPI · AppTopo</text>
+      <text x="757" y="36" font-size="13" fill="rgba(0,212,170,0.7)" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700">N</text>
+      <line x1="757" y1="40" x2="757" y2="58" stroke="rgba(0,212,170,0.45)" stroke-width="1.5"></line>
+      <polygon points="757,38 753,55 761,55" fill="rgba(0,212,170,0.45)"></polygon>
+      <text x="638" y="355" font-size="7" fill="rgba(139,188,255,0.4)" font-family="JetBrains Mono,monospace">scară 1:500 · Stereo70 · © ANCPI · AppTopo</text>
     </svg>
-    <!-- map controls -->
     <div class="map-ctrl">
-      <button class="map-cbtn">+</button>
-      <button class="map-cbtn">−</button>
-      <button class="map-cbtn" style="font-size:11px">⊹</button>
-      <button class="map-cbtn" style="font-size:10px">⛶</button>
+      <button class="mc">+</button><button class="mc">−</button>
+      <button class="mc" style="font-size:11px">⊹</button>
+      <button class="mc" style="font-size:10px">⛶</button>
     </div>
-    <!-- layer panel -->
-    <div class="map-layers">
-      <div class="ml-title">Layere</div>
-      <label class="ml-row"><div class="ml-chk on"></div>Parcelă curentă</label>
-      <label class="ml-row"><div class="ml-chk on"></div>Ortofoto ANCPI</label>
-      <label class="ml-row"><div class="ml-chk on"></div>CF vecine</label>
-      <label class="ml-row"><div class="ml-chk on"></div>Zone inundabile</label>
-      <label class="ml-row"><div class="ml-chk"></div>Natura 2000</label>
-      <label class="ml-row"><div class="ml-chk"></div>PUG zonificare</label>
-      <label class="ml-row"><div class="ml-chk"></div>Rețele edilitare</label>
+    <div class="map-ly">
+      <div class="ml-t">Layere</div>
+      <label class="ml-r"><div class="ml-chk on"></div>Parcelă curentă</label>
+      <label class="ml-r"><div class="ml-chk on"></div>Ortofoto ANCPI</label>
+      <label class="ml-r"><div class="ml-chk on"></div>CF vecine</label>
+      <label class="ml-r"><div class="ml-chk on"></div>Zone inundabile</label>
+      <label class="ml-r"><div class="ml-chk"></div>Natura 2000</label>
+      <label class="ml-r"><div class="ml-chk"></div>PUG zonificare</label>
+      <label class="ml-r"><div class="ml-chk"></div>Rețele edilitare</label>
     </div>
-    <!-- coord bar -->
-    <div class="map-coord">X: 382.170 · Y: 283.400 · Z: 278.48 · Stereo70</div>
+    <div class="map-co" id="map-coord">X: — · Y: — · Stereo70</div>
   </div>
-  <div class="metrics" style="grid-template-columns:repeat(5,1fr)">
-    <div class="metric teal"><div class="m-label">Suprafață</div><div class="m-val" style="font-size:17px">2.851</div><div class="m-sub">mp · măsurat</div></div>
-    <div class="metric"><div class="m-label">Lot 1</div><div class="m-val" style="font-size:17px">1.424</div><div class="m-sub">mp</div></div>
-    <div class="metric"><div class="m-label">Lot 2</div><div class="m-val" style="font-size:17px">1.427</div><div class="m-sub">mp</div></div>
-    <div class="metric"><div class="m-label">Perimetru</div><div class="m-val" style="font-size:17px">217</div><div class="m-sub">m total</div></div>
-    <div class="metric red"><div class="m-label">Zonă inundabilă</div><div class="m-val" style="font-size:17px">18%</div><div class="m-sub">din parcelă</div></div>
+  <div class="mets" style="grid-template-columns:repeat(5,1fr)">
+    <div class="met tl"><div class="m-lbl">Suprafață</div><div class="m-val" style="font-size:16px" id="h-sup">—</div><div class="m-sub">mp · măsurat</div></div>
+    <div class="met"><div class="m-lbl">Lot 1</div><div class="m-val" style="font-size:16px" id="h-lot1">—</div><div class="m-sub">mp</div></div>
+    <div class="met"><div class="m-lbl">Lot 2</div><div class="m-val" style="font-size:16px" id="h-lot2">—</div><div class="m-sub">mp</div></div>
+    <div class="met"><div class="m-lbl">Perimetru</div><div class="m-val" style="font-size:16px" id="h-per">—</div><div class="m-sub">m total</div></div>
+    <div class="met rd"><div class="m-lbl">Zonă inundabilă</div><div class="m-val" style="font-size:16px">18%</div><div class="m-sub">din parcelă</div></div>
   </div>
 </div>
 
-<!-- ▸ DOCUMENTE ◂ -->
-<div class="page" id="page-documente">
-  <div class="pg-head">
-    <div><div class="pg-title">Generator documente</div><div class="pg-sub">completare automată · Dezm. 34521/1 · Popescu Ion · Hunedoara</div></div>
-    <div class="pg-actions"><button class="btn teal">Generează tot dosarul</button></div>
+<!-- ══ GENERATOR ══ -->
+<div class="page" id="page-generator">
+  <div class="pg-h">
+    <div><div class="pg-title">Generator documente</div><div class="pg-sub">completare automată din datele extrase OCR + măsurători + ANCPI</div></div>
+    <div class="pg-act"><button class="btn teal">Generează tot dosarul</button></div>
   </div>
   <div class="alert ok" style="margin-bottom:4px">
-    <div class="alert-dot" style="background:var(--teal)"></div>
-    <div class="alert-txt"><strong>Toate datele disponibile</strong> — dosar complet gata de generat. Memoriul tehnic include automat articolele legale din modulul juridic.</div>
+    <div class="a-dot" style="background:var(--teal)"></div>
+    <div class="a-txt"><strong>Completare automată activă</strong> — memoriul tehnic include articolele juridice relevante. Datele din buletin și CF sunt preluate direct din OCR.</div>
   </div>
-  <div class="doc-grid">
-    <div class="dc">
-      <div class="dc-ico" style="background:rgba(255,92,92,.1);color:var(--red)">PDF</div>
-      <div><div class="dc-name">Plan de amplasament</div><div class="dc-sub">scară 1:500 · cartuș · tabel coordonate</div><div class="dc-status"><span class="tag tg-ok">Gata de generat</span></div></div>
+  <div class="g3">
+    <div class="panel" style="cursor:pointer" onmouseenter="this.style.borderColor=&#39;var(--teal)&#39;" onmouseleave="this.style.borderColor=&#39;&#39;">
+      <div class="ph"><div class="ph-ico" style="background:rgba(255,92,92,.1);color:var(--red)">PDF</div><div class="ph-title">Plan amplasament</div></div>
+      <div class="pb"><div class="dr"><span class="dk">Scară</span><span class="dv">1:500</span></div><div class="dr"><span class="dk">Conținut</span><span class="dv">cartuș + coordonate</span></div><div style="margin-top:4px"><span class="tag t-ok">Gata de generat</span></div></div>
     </div>
-    <div class="dc">
-      <div class="dc-ico" style="background:var(--blue3);color:var(--blue)">DXF</div>
-      <div><div class="dc-name">Fișier CAD parcelă</div><div class="dc-sub">straturi ANCPI · cotări · hașuri</div><div class="dc-status"><span class="tag tg-ok">Gata de generat</span></div></div>
+    <div class="panel" style="cursor:pointer" onmouseenter="this.style.borderColor=&#39;var(--teal)&#39;" onmouseleave="this.style.borderColor=&#39;&#39;">
+      <div class="ph"><div class="ph-ico" style="background:var(--blue3);color:var(--blue)">DXF</div><div class="ph-title">Fișier CAD</div></div>
+      <div class="pb"><div class="dr"><span class="dk">Straturi</span><span class="dv">standard ANCPI</span></div><div class="dr"><span class="dk">Conținut</span><span class="dv">cotări + hașuri</span></div><div style="margin-top:4px"><span class="tag t-ok">Gata de generat</span></div></div>
     </div>
-    <div class="dc">
-      <div class="dc-ico" style="background:var(--teal3);color:var(--teal)">DOC</div>
-      <div><div class="dc-name">Memoriu tehnic</div><div class="dc-sub">text auto + articole legale din modul juridic</div><div class="dc-status"><span class="tag tg-ok">Gata de generat</span></div></div>
+    <div class="panel" style="cursor:pointer" onmouseenter="this.style.borderColor=&#39;var(--teal)&#39;" onmouseleave="this.style.borderColor=&#39;&#39;">
+      <div class="ph"><div class="ph-ico" style="background:var(--teal3);color:var(--teal)">DOC</div><div class="ph-title">Memoriu tehnic</div></div>
+      <div class="pb"><div class="dr"><span class="dk">Articole</span><span class="dv">din modul juridic</span></div><div class="dr"><span class="dk">Date</span><span class="dv">din OCR + ANCPI</span></div><div style="margin-top:4px"><span class="tag t-ok">Gata de generat</span></div></div>
     </div>
-    <div class="dc">
-      <div class="dc-ico" style="background:var(--amber3);color:var(--amber)">XML</div>
-      <div><div class="dc-name">Fișier e-Terra</div><div class="dc-sub">.cpxml · depunere electronică ANCPI</div><div class="dc-status"><span class="tag tg-ok">Gata de generat</span></div></div>
+    <div class="panel" style="cursor:pointer" onmouseenter="this.style.borderColor=&#39;var(--teal)&#39;" onmouseleave="this.style.borderColor=&#39;&#39;">
+      <div class="ph"><div class="ph-ico" style="background:var(--amber3);color:var(--amber)">XML</div><div class="ph-title">Fișier e-Terra</div></div>
+      <div class="pb"><div class="dr"><span class="dk">Format</span><span class="dv">.cpxml ANCPI</span></div><div class="dr"><span class="dk">Depunere</span><span class="dv">electronică</span></div><div style="margin-top:4px"><span class="tag t-ok">Gata de generat</span></div></div>
     </div>
-    <div class="dc">
-      <div class="dc-ico" style="background:var(--teal3);color:var(--teal)">TAB</div>
-      <div><div class="dc-name">Tabel mișcare parcele</div><div class="dc-sub">situație înainte/după · suprafețe · proprietari</div><div class="dc-status"><span class="tag tg-ok">Gata de generat</span></div></div>
+    <div class="panel" style="cursor:pointer" onmouseenter="this.style.borderColor=&#39;var(--teal)&#39;" onmouseleave="this.style.borderColor=&#39;&#39;">
+      <div class="ph"><div class="ph-ico" style="background:var(--teal3);color:var(--teal)">TAB</div><div class="ph-title">Tabel mișcare parcele</div></div>
+      <div class="pb"><div class="dr"><span class="dk">Conținut</span><span class="dv">înainte / după</span></div><div class="dr"><span class="dk">Date</span><span class="dv">din CF + măsurători</span></div><div style="margin-top:4px"><span class="tag t-ok">Gata de generat</span></div></div>
     </div>
-    <div class="dc">
-      <div class="dc-ico" style="background:rgba(150,100,255,.1);color:#a48fff">CER</div>
-      <div><div class="dc-name">Cerere tip ANCPI</div><div class="dc-sub">formular completat automat cu datele clientului</div><div class="dc-status"><span class="tag tg-warn">Date client incomplete</span></div></div>
+    <div class="panel" style="cursor:pointer" onmouseenter="this.style.borderColor=&#39;var(--amber)&#39;" onmouseleave="this.style.borderColor=&#39;&#39;">
+      <div class="ph"><div class="ph-ico" style="background:rgba(150,100,255,.1);color:#a48fff">CER</div><div class="ph-title">Cerere tip ANCPI</div></div>
+      <div class="pb"><div class="dr"><span class="dk">Date client</span><span class="dv">din buletin OCR</span></div><div style="margin-top:4px"><span class="tag t-warn">Verifică datele client</span></div></div>
     </div>
   </div>
-  <div class="actions">
-    <button class="btn amber">⬇ Descarcă tot dosarul (.zip)</button>
+  <div class="acts">
+    <button class="btn amber">⬇ Descarcă dosar complet (.zip)</button>
     <button class="btn">⬇ Doar PDF-urile</button>
-    <button class="btn">⬇ Doar DXF</button>
-    <button class="btn">⬇ e-Terra XML</button>
-    <button class="btn err">Previzualizare plan</button>
+    <button class="btn">⬇ DXF + XML e-Terra</button>
+    <button class="btn red">⚠ Verificare AI dosar</button>
   </div>
 </div>
 
-<!-- ▸ JURIDIC ◂ -->
+<!-- ══ JURIDIC ══ -->
 <div class="page" id="page-juridic">
-  <div class="pg-head">
-    <div><div class="pg-title">Modul juridic</div><div class="pg-sub">legi per lucrare · sincronizat Monitor Oficial · alerte automate modificări</div></div>
+  <div class="pg-h">
+    <div><div class="pg-title">Modul juridic</div><div class="pg-sub">legi per tip lucrare · sincronizat Monitor Oficial · alerte modificări</div></div>
   </div>
   <div style="display:flex;gap:14px">
-    <div style="width:175px;min-width:175px;display:flex;flex-direction:column;gap:2px">
-      <div class="csrc-lbl">Tip lucrare</div>
-      <button class="csrc active">Dezmembrare <span class="tree-badge tb-teal">5</span></button>
-      <button class="csrc">Alipire <span class="tree-badge tb-teal">4</span></button>
-      <button class="csrc">Prima înscriere <span class="tree-badge tb-teal">6</span></button>
-      <button class="csrc">Ridicare topo <span class="tree-badge tb-teal">3</span></button>
-      <button class="csrc">RLU <span class="tree-badge tb-teal">4</span></button>
-      <button class="csrc">Aviz tehnic <span class="tree-badge tb-teal">3</span></button>
-      <div class="csrc-lbl" style="margin-top:10px">Alerte</div>
-      <div style="padding:6px 9px;display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;gap:6px;align-items:flex-start"><div class="tree-dot td-err" style="flex-shrink:0;margin-top:3px"></div><div style="font-size:10px;color:var(--t2);font-family:var(--mono);line-height:1.4"><strong style="color:var(--t1)">Ord.700/2014</strong><br>art.58 mod. ian.2024</div></div>
-        <div style="display:flex;gap:6px;align-items:flex-start"><div class="tree-dot td-warn" style="flex-shrink:0;margin-top:3px"></div><div style="font-size:10px;color:var(--t2);font-family:var(--mono);line-height:1.4"><strong style="color:var(--t1)">Legea 7/1996</strong><br>republicată, verifică art.23</div></div>
+    <div style="width:170px;min-width:170px;display:flex;flex-direction:column;gap:2px">
+      <div class="csrc-lbl" style="font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);padding:7px 9px 3px">Tip lucrare</div>
+      <button class="csrc active">Dezmembrare <span style="margin-left:auto;font-size:9px;padding:1px 5px;border-radius:3px;font-family:var(--mono);background:var(--teal3);color:var(--teal)">5</span></button>
+      <button class="csrc">Alipire <span style="margin-left:auto;font-size:9px;padding:1px 5px;border-radius:3px;font-family:var(--mono);background:var(--teal3);color:var(--teal)">4</span></button>
+      <button class="csrc">Prima înscriere <span style="margin-left:auto;font-size:9px;padding:1px 5px;border-radius:3px;font-family:var(--mono);background:var(--teal3);color:var(--teal)">6</span></button>
+      <button class="csrc">Ridicare topo <span style="margin-left:auto;font-size:9px;padding:1px 5px;border-radius:3px;font-family:var(--mono);background:var(--teal3);color:var(--teal)">3</span></button>
+      <button class="csrc">RLU</button>
+      <button class="csrc">Aviz tehnic</button>
+      <button class="csrc">Trasare</button>
+      <button class="csrc">Actualizare</button>
+      <div style="margin-top:10px;padding:7px 9px 3px;font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono)">Alerte</div>
+      <div style="padding:4px 9px;display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;gap:5px;align-items:flex-start"><div class="dot d-err" style="flex-shrink:0;margin-top:3px"></div><div style="font-size:10px;color:var(--t2);font-family:var(--mono);line-height:1.4"><strong style="color:var(--t1)">Ord.700/2014</strong><br>art.58 mod. 2024</div></div>
+        <div style="display:flex;gap:5px;align-items:flex-start"><div class="dot d-warn" style="flex-shrink:0;margin-top:3px"></div><div style="font-size:10px;color:var(--t2);font-family:var(--mono);line-height:1.4"><strong style="color:var(--t1)">L.7/1996</strong><br>republicată</div></div>
       </div>
     </div>
-    <div style="flex:1;display:flex;flex-direction:column;gap:8px">
-      <input type="text" placeholder="Caută în toate actele normative... ex: dezmembrare, art.23, toleranță" style="padding:7px 12px;border:1px solid var(--line2);border-radius:var(--r);background:var(--bg3);color:var(--t1);font-size:11.5px;font-family:var(--mono);outline:none;width:100%;margin-bottom:2px">
-      <div class="jur-item">
-        <div class="jur-head" onclick="toggleJ(this)">
+    <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+      <input type="text" placeholder="Caută în toate actele normative... ex: dezmembrare, art.23, toleranță" style="padding:7px 12px;border:1px solid var(--ln2);border-radius:var(--r);background:var(--bg3);color:var(--t1);font-size:11.5px;font-family:var(--mono);outline:none;width:100%">
+      <div class="jur-i">
+        <div class="jur-h" onclick="toggleJ(this)">
           <div class="jur-ico" style="background:var(--teal3);color:var(--teal)">LEG</div>
-          <div style="flex:1"><div class="jur-title">Legea 7/1996 — Cadastru și publicitate imobiliară</div><div class="jur-sub">condiții dezmembrare · documentație necesară · recepție ANCPI</div></div>
-          <div style="display:flex;gap:5px"><span class="tag tg-ok">Cadastru</span><span class="tag tg-ok">CF</span></div>
-          <span style="font-size:10px;color:var(--t3);margin-left:8px">▼</span>
+          <div style="flex:1"><div class="jur-t">Legea 7/1996 — Cadastru și publicitate imobiliară</div><div class="jur-s">condiții dezmembrare · documentație · recepție ANCPI</div></div>
+          <div style="display:flex;gap:5px"><span class="tag t-ok">Cadastru</span><span class="tag t-ok">CF</span></div>
+          <span style="font-size:10px;color:var(--t3);margin-left:7px">▼</span>
         </div>
-        <div class="jur-body">
-          <div class="art-row"><span class="art-nr">Art. 23</span><div class="art-txt"><strong>Condiții dezmembrare:</strong> Imobilul poate fi dezlipit dacă fiecare lot rezultat are acces la calea publică și respectă suprafața minimă conform PUG/PUZ.</div></div>
-          <div class="art-row"><span class="art-nr">Art. 24</span><div class="art-txt"><strong>Documentația necesară:</strong> Plan de amplasament și delimitare pentru fiecare lot, memoriu tehnic, fișier e-Terra, certificat fiscal.</div></div>
-          <div class="art-row"><span class="art-nr">Art. 77 al.(2)</span><div class="art-txt"><strong>Recepția ANCPI:</strong> Documentația se depune la OCPI și se recepționează în max. 15 zile lucrătoare.</div></div>
+        <div class="jur-b">
+          <div class="art-r"><span class="art-n">Art. 23</span><div class="art-tx"><strong>Condiții dezmembrare:</strong> Imobilul poate fi dezlipit dacă fiecare lot rezultat are acces la calea publică și respectă suprafața minimă conform PUG/PUZ.</div></div>
+          <div class="art-r"><span class="art-n">Art. 24</span><div class="art-tx"><strong>Documentația necesară:</strong> Plan de amplasament și delimitare pentru fiecare lot, memoriu tehnic, fișier e-Terra, certificat fiscal.</div></div>
+          <div class="art-r"><span class="art-n">Art. 77 al.(2)</span><div class="art-tx"><strong>Recepția ANCPI:</strong> Documentația se depune la OCPI și se recepționează în max. 15 zile lucrătoare.</div></div>
         </div>
       </div>
-      <div class="jur-item">
-        <div class="jur-head" onclick="toggleJ(this)">
+      <div class="jur-i">
+        <div class="jur-h" onclick="toggleJ(this)">
           <div class="jur-ico" style="background:var(--amber3);color:var(--amber)">ORD</div>
-          <div style="flex:1"><div class="jur-title">Ord. ANCPI 700/2014 — Regulamentul documentațiilor cadastrale</div><div class="jur-sub">conținut dosar · toleranțe · format e-Terra</div></div>
-          <div style="display:flex;gap:5px"><span class="tag tg-warn">Documentație</span><span class="tag tg-err">! Modificat 2024</span></div>
-          <span style="font-size:10px;color:var(--t3);margin-left:8px">▼</span>
+          <div style="flex:1"><div class="jur-t">Ord. ANCPI 700/2014 — Regulamentul documentațiilor cadastrale</div><div class="jur-s">conținut dosar · toleranțe · format e-Terra</div></div>
+          <div style="display:flex;gap:5px"><span class="tag t-warn">Documentație</span><span class="tag t-err">! Modificat 2024</span></div>
+          <span style="font-size:10px;color:var(--t3);margin-left:7px">▼</span>
         </div>
-        <div class="jur-body">
-          <div class="alert warn" style="margin-bottom:8px"><div class="alert-dot" style="background:var(--amber)"></div><div class="alert-txt"><strong>Atenție:</strong> Act modificat ianuarie 2024 — verifică textul integral înainte de depunere.</div></div>
-          <div class="art-row"><span class="art-nr amber">Art. 58</span><div class="art-txt"><strong>Conținut dosar dezmembrare:</strong> cerere tip, memoriu tehnic, plan parcelar, plan de amplasament, tabel de mișcare, dovada dreptului de proprietate.</div></div>
-          <div class="art-row"><span class="art-nr amber">Art. 59</span><div class="art-txt"><strong>Toleranțe admise:</strong> Suprafața măsurată nu poate depăși cu mai mult de 3% suprafața din act pentru terenuri ≤10.000 mp.</div></div>
-          <div class="art-row"><span class="art-nr amber">Anexa 1</span><div class="art-txt"><strong>Formatul e-Terra (.cpxml)</strong> — structura XML obligatorie pentru transmitere electronică la ANCPI.</div></div>
+        <div class="jur-b">
+          <div class="alert warn" style="margin-bottom:8px"><div class="a-dot" style="background:var(--amber)"></div><div class="a-txt"><strong>Atenție:</strong> Art.58-59 modificate ianuarie 2024. Verifică textul integral.</div></div>
+          <div class="art-r"><span class="art-n am">Art. 58</span><div class="art-tx"><strong>Conținut dosar dezmembrare:</strong> cerere tip, memoriu tehnic, plan parcelar, plan de amplasament, tabel de mișcare, dovada dreptului de proprietate.</div></div>
+          <div class="art-r"><span class="art-n am">Art. 59</span><div class="art-tx"><strong>Toleranțe admise:</strong> Suprafața măsurată nu poate depăși cu mai mult de 3% suprafața din act pentru terenuri ≤10.000 mp.</div></div>
+          <div class="art-r"><span class="art-n am">Anexa 1</span><div class="art-tx"><strong>Formatul e-Terra (.cpxml)</strong> — structura XML obligatorie pentru transmitere electronică la ANCPI.</div></div>
         </div>
       </div>
-      <div class="jur-item">
-        <div class="jur-head" onclick="toggleJ(this)">
+      <div class="jur-i">
+        <div class="jur-h" onclick="toggleJ(this)">
           <div class="jur-ico" style="background:var(--blue3);color:var(--blue)">OM</div>
-          <div style="flex:1"><div class="jur-title">OM 137/2016 — Categorii lucrări tehnice de cadastru</div><div class="jur-sub">autorizare topograf · categorii A–D</div></div>
-          <span class="tag tg-blue">Autorizare</span>
-          <span style="font-size:10px;color:var(--t3);margin-left:8px">▼</span>
+          <div style="flex:1"><div class="jur-t">OM 137/2016 — Categorii lucrări tehnice de cadastru</div><div class="jur-s">autorizare topograf · categorii A–D</div></div>
+          <span class="tag t-blue">Autorizare</span>
+          <span style="font-size:10px;color:var(--t3);margin-left:7px">▼</span>
         </div>
-        <div class="jur-body">
-          <div class="art-row"><span class="art-nr">Art. 3 lit.b</span><div class="art-txt"><strong>Autorizare obligatorie:</strong> Lucrările de dezmembrare se execută numai de persoane fizice autorizate ANCPI categoria C sau D.</div></div>
+        <div class="jur-b">
+          <div class="art-r"><span class="art-n">Art. 3 lit.b</span><div class="art-tx"><strong>Autorizare:</strong> Lucrările de dezmembrare se execută numai de persoane fizice autorizate ANCPI categoria C sau D.</div></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ▸ CONECTOR ◂ -->
+<!-- ══ CONECTOR DATE ══ -->
 <div class="page" id="page-conector">
-  <div class="pg-head">
-    <div><div class="pg-title">Conector central de date</div><div class="pg-sub">interogare paralelă · 12 surse · răspuns mediu &lt; 1s</div></div>
+  <div class="pg-h">
+    <div><div class="pg-title">Conector central de date</div><div class="pg-sub">interogare paralelă · 12 surse · răspuns &lt;1s · date spatiale + juridice + riscuri</div></div>
   </div>
-  <div style="display:flex;gap:8px;margin-bottom:4px">
-    <div class="si-wrap" style="flex:1">
-      <span class="si-icon">⌕</span>
-      <input id="conInput" type="text" value="34521/1 — str. Mihai Viteazu 12, Hunedoara" placeholder="Nr. cadastral, adresă sau coordonate Stereo70...">
+  <div style="display:flex;gap:8px;margin-bottom:8px">
+    <div style="flex:1;position:relative">
+      <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:13px;pointer-events:none">⌕</span>
+      <input id="conInput" type="text" placeholder="Nr. cadastral, adresă sau coordonate Stereo70..." style="width:100%;padding:7px 12px 7px 30px;border-radius:var(--r);border:1px solid var(--ln2);background:var(--bg3);color:var(--t1);font-size:12px;font-family:var(--mono);outline:none">
     </div>
     <button class="btn teal" onclick="runConector()">Interogare completă</button>
   </div>
-  <div class="prog-strip" style="margin-bottom:12px;border-radius:2px"><div class="prog-fill" id="conProg"></div></div>
-  <div class="con-layout">
-    <div class="con-left">
-      <div class="csrc-lbl">Cadastru &amp; CF</div>
-      <button class="csrc active" id="csrc-ancpi"><div class="tree-dot td-ok" id="cdot-ancpi"></div>ANCPI Geoportal</button>
-      <button class="csrc" id="csrc-eterra"><div class="tree-dot td-ok" id="cdot-eterra"></div>e-Terra CF</button>
-      <button class="csrc" id="csrc-pug"><div class="tree-dot td-warn" id="cdot-pug"></div>PUG Primărie</button>
-      <div class="csrc-lbl">Restricții</div>
-      <button class="csrc" id="csrc-inhga"><div class="tree-dot td-ok" id="cdot-inhga"></div>INHGA inundabil</button>
-      <button class="csrc" id="csrc-natura"><div class="tree-dot td-ok" id="cdot-natura"></div>Natura 2000</button>
-      <button class="csrc" id="csrc-cultura"><div class="tree-dot td-ok" id="cdot-cultura"></div>LMI Cultură</button>
-      <button class="csrc" id="csrc-seismic"><div class="tree-dot td-ok" id="cdot-seismic"></div>Risc seismic</button>
-      <div class="csrc-lbl">Spațiale</div>
-      <button class="csrc" id="csrc-dem"><div class="tree-dot td-ok" id="cdot-dem"></div>Copernicus DEM</button>
-      <button class="csrc" id="csrc-osm"><div class="tree-dot td-ok" id="cdot-osm"></div>OpenStreetMap</button>
-      <button class="csrc" id="csrc-geo"><div class="tree-dot td-ok" id="cdot-geo"></div>Geologie IGPF</button>
-      <div class="csrc-lbl">Valoare</div>
-      <button class="csrc" id="csrc-anaf"><div class="tree-dot td-ok" id="cdot-anaf"></div>Grile ANAF</button>
-      <button class="csrc" id="csrc-monof"><div class="tree-dot td-ok" id="cdot-monof"></div>Monitor Oficial</button>
+  <div style="height:2px;background:var(--bg2);border-radius:2px;margin-bottom:10px;overflow:hidden"><div id="conProg" style="height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));width:0;transition:width .2s"></div></div>
+  <div style="display:flex;gap:12px">
+    <div class="con-l">
+      <div class="csrc-lbl" style="font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);padding:7px 9px 3px">Cadastru &amp; CF</div>
+      <button class="csrc active" id="csrc-ancpi"><div class="dot d-ok" id="cdot-ancpi"></div>ANCPI</button>
+      <button class="csrc" id="csrc-eterra"><div class="dot d-ok" id="cdot-eterra"></div>e-Terra CF</button>
+      <button class="csrc" id="csrc-pug"><div class="dot d-warn" id="cdot-pug"></div>PUG Primărie</button>
+      <div class="csrc-lbl" style="font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);padding:7px 9px 3px">Restricții</div>
+      <button class="csrc" id="csrc-inhga"><div class="dot d-ok" id="cdot-inhga"></div>INHGA</button>
+      <button class="csrc" id="csrc-natura"><div class="dot d-ok" id="cdot-natura"></div>Natura 2000</button>
+      <button class="csrc" id="csrc-cultura"><div class="dot d-ok" id="cdot-cultura"></div>LMI Cultură</button>
+      <button class="csrc" id="csrc-seismic"><div class="dot d-ok" id="cdot-seismic"></div>Seismic</button>
+      <div class="csrc-lbl" style="font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);padding:7px 9px 3px">Spațiale</div>
+      <button class="csrc" id="csrc-dem"><div class="dot d-ok" id="cdot-dem"></div>Copernicus DEM</button>
+      <button class="csrc" id="csrc-osm"><div class="dot d-ok" id="cdot-osm"></div>OpenStreetMap</button>
+      <button class="csrc" id="csrc-geo"><div class="dot d-ok" id="cdot-geo"></div>Geologie</button>
+      <div class="csrc-lbl" style="font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.9px;font-family:var(--mono);padding:7px 9px 3px">Juridic</div>
+      <button class="csrc" id="csrc-anaf"><div class="dot d-ok" id="cdot-anaf"></div>Grile ANAF</button>
+      <button class="csrc" id="csrc-monof"><div class="dot d-ok" id="cdot-monof"></div>Monitor Oficial</button>
     </div>
-    <div class="con-right">
-      <div class="metrics">
-        <div class="metric teal"><div class="m-label">Suprafață CF</div><div class="m-val">2.847</div><div class="m-sub">mp · intravilan</div></div>
-        <div class="metric"><div class="m-label">Categorie</div><div class="m-val" style="font-size:13px;padding-top:5px">Cc — curți</div><div class="m-sub">CF 45821</div></div>
-        <div class="metric amber"><div class="m-label">Valoare estimată</div><div class="m-val">41.280</div><div class="m-sub">EUR · grile notariale</div></div>
-        <div class="metric red"><div class="m-label">Alerte</div><div class="m-val">3</div><div class="m-sub">necesită atenție</div></div>
+    <div class="con-r">
+      <div class="mets">
+        <div class="met tl"><div class="m-lbl">Suprafață CF</div><div class="m-val" id="con-sup">—</div><div class="m-sub">mp</div></div>
+        <div class="met"><div class="m-lbl">Categorie</div><div class="m-val" style="font-size:13px;padding-top:4px" id="con-cat">—</div></div>
+        <div class="met am"><div class="m-lbl">Valoare estimată</div><div class="m-val" id="con-val">—</div><div class="m-sub">EUR</div></div>
+        <div class="met rd"><div class="m-lbl">Alerte</div><div class="m-val" id="con-alerte">—</div><div class="m-sub">riscuri detectate</div></div>
       </div>
-      <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--teal3);color:var(--teal)">ANCPI</div><div class="ph-title">Date cadastrale oficiale</div><div class="ph-meta">0.8s</div><div class="tree-dot td-ok" style="margin-left:6px"></div></div>
-        <div class="panel-body">
-          <div class="dr"><span class="dr-k">Proprietar CF</span><span class="dr-v">Popescu Ion și Popescu Maria</span></div>
-          <div class="dr"><span class="dr-k">Suprafață CF / măsurată</span><span class="dr-v">2.847 mp · 2.851 mp <span class="tag tg-ok">în toleranță</span></span></div>
-          <div class="dr"><span class="dr-k">Sarcini CF</span><span class="dr-v"><span class="tag tg-warn">Ipotecă BCR</span></span></div>
-          <div class="dr"><span class="dr-k">Vecini</span><span class="dr-v">N:34520 · S:drum · E:34522 · V:34519</span></div>
+      <div class="panel" id="con-results" style="display:none">
+        <div class="ph"><div class="ph-ico" style="background:var(--teal3);color:var(--teal)">ANCPI</div><div class="ph-title">Date cadastrale</div><div class="ph-meta" id="con-time">—</div><div class="dot d-ok" style="margin-left:6px"></div></div>
+        <div class="pb">
+          <div class="dr"><span class="dk">Proprietar CF</span><span class="dv" id="con-prop">—</span></div>
+          <div class="dr"><span class="dk">Suprafață CF / măsurată</span><span class="dv" id="con-supm">—</span></div>
+          <div class="dr"><span class="dk">Sarcini CF</span><span class="dv" id="con-sarc">—</span></div>
         </div>
       </div>
-      <div class="panel">
-        <div class="panel-head"><div class="ph-icon" style="background:var(--red3);color:var(--red)">RISC</div><div class="ph-title">Alerte automate — restricții și riscuri spațiale</div><div class="tree-dot td-warn" style="margin-left:auto"></div></div>
-        <div class="panel-body">
-          <div class="alert err"><div class="alert-dot" style="background:var(--red)"></div><div class="alert-txt"><strong>Zonă inundabilă P1% (INHGA)</strong> — ~18% din parcelă. Obligatoriu aviz Apele Române pentru orice construcție.</div></div>
-          <div class="alert warn"><div class="alert-dot" style="background:var(--amber)"></div><div class="alert-txt"><strong>Sit Natura 2000 la 140m (ANPM)</strong> — ROSPA0089 Munții Metaliferi. Verificați planul de management.</div></div>
-          <div class="alert warn"><div class="alert-dot" style="background:var(--amber)"></div><div class="alert-txt"><strong>Monument LMI la 220m (Min.Culturii)</strong> — Casa Huniade clasa A. Verificați CU.</div></div>
-          <div class="alert ok"><div class="alert-dot" style="background:var(--teal)"></div><div class="alert-txt"><strong>Risc seismic</strong> — Zona D, ag=0.10g conf. P100-1/2013. Risc redus.</div></div>
-        </div>
+      <div class="panel" id="con-risks" style="display:none">
+        <div class="ph"><div class="ph-ico" style="background:var(--red3);color:var(--red)">RISC</div><div class="ph-title">Alerte automate</div><div class="dot d-warn" style="margin-left:auto"></div></div>
+        <div class="pb" id="con-risks-body"></div>
       </div>
-      <div class="g2">
+      <div class="g2" id="con-geo" style="display:none">
         <div class="panel">
-          <div class="panel-head"><div class="ph-icon" style="background:var(--amber3);color:var(--amber)">PUG</div><div class="ph-title">Urbanism</div></div>
-          <div class="panel-body">
-            <div class="dr"><span class="dr-k">Zonă PUG</span><span class="dr-v">L2 — locuire medie</span></div>
-            <div class="dr"><span class="dr-k">POT / CUT</span><span class="dr-v">40% · 0.8</span></div>
-            <div class="dr"><span class="dr-k">Regim înălțime</span><span class="dr-v">P+2 · 5m retragere</span></div>
+          <div class="ph"><div class="ph-ico" style="background:var(--amber3);color:var(--amber)">PUG</div><div class="ph-title">Urbanism</div></div>
+          <div class="pb">
+            <div class="dr"><span class="dk">Zonă PUG</span><span class="dv">L2 — locuire medie</span></div>
+            <div class="dr"><span class="dk">POT / CUT</span><span class="dv">40% · 0.8</span></div>
+            <div class="dr"><span class="dk">Regim</span><span class="dv">P+2 · 5m retragere</span></div>
           </div>
         </div>
         <div class="panel">
-          <div class="panel-head"><div class="ph-icon" style="background:var(--teal3);color:var(--teal)">GEO</div><div class="ph-title">Date spațiale</div></div>
-          <div class="panel-body">
-            <div class="dr"><span class="dr-k">Altitudine</span><span class="dr-v">278 m (Copernicus)</span></div>
-            <div class="dr"><span class="dr-k">Pantă</span><span class="dr-v">3.2° — teren plan</span></div>
-            <div class="dr"><span class="dr-k">Sol</span><span class="dr-v">Luvisoluri aluviale</span></div>
+          <div class="ph"><div class="ph-ico" style="background:var(--teal3);color:var(--teal)">GEO</div><div class="ph-title">Date spațiale</div></div>
+          <div class="pb">
+            <div class="dr"><span class="dk">Altitudine</span><span class="dv">278 m (Copernicus)</span></div>
+            <div class="dr"><span class="dk">Pantă</span><span class="dv">3.2° — plan</span></div>
+            <div class="dr"><span class="dk">Sol</span><span class="dv">Luvisoluri aluviale</span></div>
           </div>
         </div>
-      </div>
-      <div class="actions">
-        <button class="btn amber">⬇ Export PDF raport</button>
-        <button class="btn">⊕ Deschide lucrare</button>
-        <button class="btn">⊞ Vizualizare hartă</button>
-        <button class="btn err">⚠ Raport riscuri</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ▸ CRM ◂ -->
-<div class="page" id="page-crm">
-  <div class="pg-head">
-    <div><div class="pg-title">Clienți &amp; dosare</div><div class="pg-sub">CRM topografic · gestiune lucrări · facturare</div></div>
-    <div class="pg-actions">
-      <button class="btn">Export CSV</button>
-      <button class="btn teal">+ Client nou</button>
+<!-- ══ DOSARE ══ -->
+<div class="page" id="page-dosare">
+  <div class="pg-h">
+    <div><div class="pg-title">Dosare</div><div class="pg-sub">toate lucrările salvate local · criptat AES-256 · doar tu ai acces</div></div>
+    <div class="pg-act">
+      <button class="btn">Export arhivă</button>
+      <button class="btn teal" onclick="go(&#39;lucrare&#39;,document.querySelectorAll(&#39;.tb-t&#39;)[1])">+ Lucrare nouă</button>
     </div>
   </div>
-  <div class="metrics">
-    <div class="metric teal"><div class="m-label">Clienți activi</div><div class="m-val">24</div><div class="m-sub">luna curentă</div></div>
-    <div class="metric"><div class="m-label">Dosare deschise</div><div class="m-val">7</div><div class="m-sub">în lucru</div></div>
-    <div class="metric amber"><div class="m-label">De facturat</div><div class="m-val">4</div><div class="m-sub">dosare finalizate</div></div>
-    <div class="metric"><div class="m-label">Venituri YTD</div><div class="m-val" style="font-size:17px">38.400</div><div class="m-sub">RON · 2026</div></div>
+  <div class="mets">
+    <div class="met tl"><div class="m-lbl">Total dosare</div><div class="m-val" id="dos-total">0</div><div class="m-sub">în baza locală</div></div>
+    <div class="met am"><div class="m-lbl">În lucru</div><div class="m-val" id="dos-active">0</div></div>
+    <div class="met"><div class="m-lbl">Finalizate</div><div class="m-val" id="dos-fin">0</div></div>
+    <div class="met rd"><div class="m-lbl">Spațiu folosit</div><div class="m-val" style="font-size:16px" id="dos-space">0 MB</div><div class="m-sub">pe disc local</div></div>
   </div>
-  <div class="panel">
-    <div class="panel-head">
-      <div class="ph-icon" style="background:var(--teal3);color:var(--teal)">CRM</div>
-      <div class="ph-title">Listă clienți</div>
-      <input type="text" placeholder="Caută client..." style="margin-left:auto;padding:4px 9px;border:1px solid var(--line2);border-radius:var(--r);background:var(--bg3);color:var(--t1);font-size:11px;font-family:var(--mono);outline:none;width:180px">
-    </div>
-    <div style="overflow-x:auto">
-      <table class="tbl">
-        <thead><tr><th></th><th>Client</th><th>Tip lucrare</th><th>Nr. cadastral</th><th>Localitate</th><th>Status</th><th>Data</th><th>Valoare</th></tr></thead>
-        <tbody>
-          <tr><td><div class="av">PI</div></td><td class="sans"><strong>Popescu Ion</strong></td><td><span class="tag tg-ok">Dezmembrare</span></td><td>34521/1</td><td class="sans">Hunedoara</td><td><span class="sbadge sb-prog">În lucru</span></td><td>16.04.2026</td><td>1.200 RON</td></tr>
-          <tr><td><div class="av" style="background:var(--amber3);color:var(--amber)">SC</div></td><td class="sans"><strong>SC Construct SRL</strong></td><td><span class="tag tg-warn">Alipire</span></td><td>12034/2</td><td class="sans">Brad</td><td><span class="sbadge sb-wait">La ANCPI</span></td><td>12.04.2026</td><td>900 RON</td></tr>
-          <tr><td><div class="av" style="background:var(--blue3);color:var(--blue)">MV</div></td><td class="sans"><strong>Mureșan Vasile</strong></td><td><span class="tag tg-blue">Prima înscr.</span></td><td>88901</td><td class="sans">Orăștie</td><td><span class="sbadge sb-done">Finalizat</span></td><td>10.04.2026</td><td>1.500 RON</td></tr>
-          <tr><td><div class="av">PH</div></td><td class="sans"><strong>Primăria Hunedoara</strong></td><td><span class="tag tg-ok">Ridicare topo</span></td><td>—</td><td class="sans">Hunedoara</td><td><span class="sbadge sb-prog">În lucru</span></td><td>09.04.2026</td><td>3.200 RON</td></tr>
-          <tr><td><div class="av" style="background:rgba(150,100,255,.1);color:#a48fff">IC</div></td><td class="sans"><strong>Ionescu Constantin</strong></td><td><span class="tag tg-warn">Actualizare</span></td><td>55231</td><td class="sans">Deva</td><td><span class="sbadge sb-done">Finalizat</span></td><td>05.04.2026</td><td>600 RON</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <div style="display:flex;gap:8px;margin-bottom:8px">
+    <input type="text" id="dos-search" placeholder="Caută în dosare — nr. cadastral, UAT..." oninput="filterDosare()" style="flex:1;padding:7px 12px;border-radius:var(--r);border:1px solid var(--ln2);background:var(--bg3);color:var(--t1);font-size:12px;font-family:var(--mono);outline:none">
+    <select id="dos-filter" onchange="filterDosare()" style="padding:7px 10px;border-radius:var(--r);border:1px solid var(--ln2);background:var(--bg3);color:var(--t1);font-size:11px;font-family:var(--mono);outline:none">
+      <option value="">Toate tipurile</option>
+      <option value="Dezmembrare">Dezmembrare</option>
+      <option value="Alipire">Alipire</option>
+      <option value="Prima înscriere">Prima înscriere</option>
+      <option value="Ridicare topo">Ridicare topo</option>
+    </select>
+  </div>
+  <div class="dosare-list" id="dosare-full">
+    <div style="padding:40px;text-align:center;font-size:11px;color:var(--t3);font-family:var(--mono)">Niciun dosar creat.<br><br>Apasă + Lucrare nouă pentru a crea primul dosar.</div>
   </div>
 </div>
 
-</div><!-- /content -->
-</div><!-- /main -->
-</div><!-- /app -->
+</div></div></div>
 
 <script>
-function showPage(id,tab){
+// ── STATE ──
+const state = {
+  dosare: JSON.parse(localStorage.getItem('at_dosare')||'[]'),
+  currentDos: null
+};
+
+// ── NAV ──
+function go(id, tab) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tb-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.sb-icon').forEach(t=>t.classList.remove('active'));
-  const pg=document.getElementById('page-'+id);
-  if(pg)pg.classList.add('active');
-  if(tab)tab.classList.add('active');
+  document.querySelectorAll('.tb-t').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sb-ic').forEach(t=>t.classList.remove('active'));
+  const pg = document.getElementById('page-'+id);
+  if(pg) pg.classList.add('active');
+  if(tab) tab.classList.add('active');
+  if(id==='dosare') renderDosare();
+  if(id==='dashboard') renderDashboard();
 }
-function toggleJ(head){
-  const body=head.nextElementSibling;
-  const open=body.classList.toggle('open');
-  head.querySelector('span:last-child').textContent=open?'▲':'▼';
+
+// ── LUCRARE ──
+function salveazaLucrare() {
+  const cad = document.getElementById('luc-cad').value.trim();
+  const cf  = document.getElementById('luc-cf').value.trim();
+  const uat = document.getElementById('luc-uat').value.trim();
+  const jud = document.getElementById('luc-jud').value;
+  const adr = document.getElementById('luc-adr').value.trim();
+  const obs = document.getElementById('luc-obs').value.trim();
+  if(!cad && !uat) { alert('Completează cel puțin nr. cadastral sau UAT.'); return; }
+  const tip = document.querySelector('.lc.sel .lc-nm')?.textContent || 'Dezmembrare';
+  const dosar = {
+    id: Date.now(),
+    tip, cad, cf, uat, jud, adr, obs,
+    data: new Date().toLocaleDateString('ro-RO'),
+    status: 'in-lucru',
+    documente: [],
+    masuratori: null
+  };
+  state.dosare.unshift(dosar);
+  state.currentDos = dosar;
+  localStorage.setItem('at_dosare', JSON.stringify(state.dosare));
+  renderDashboard();
+  go('documente-client', document.querySelectorAll('.tb-t')[2]);
 }
+
+function selectLc(el) {
+  document.querySelectorAll('.lc').forEach(l=>l.classList.remove('sel'));
+  el.classList.add('sel');
+  const nm = el.querySelector('.lc-nm');
+  if(nm) { const tp = el.querySelector('.lc-tp'); if(!tp){const d=document.createElement('div');d.className='lc-tp';d.textContent='Selectat';el.prepend(d);} else tp.textContent='Selectat';}
+}
+
+// ── RENDER DASHBOARD ──
+function renderDashboard() {
+  const active = state.dosare.filter(d=>d.status==='in-lucru').length;
+  const fin = state.dosare.filter(d=>d.status==='finalizat').length;
+  document.getElementById('cnt-active').textContent = active || '0';
+  document.getElementById('cnt-term').textContent = '0';
+  document.getElementById('cnt-fin').textContent = fin || '0';
+  const list = document.getElementById('dosare-recente');
+  const recent = state.dosare.slice(0,4);
+  if(recent.length===0){
+    list.innerHTML='<div style="padding:20px;text-align:center;font-size:11px;color:var(--t3);font-family:var(--mono)">Niciun dosar creat încă.<br>Apasă + Lucrare nouă pentru a începe.</div>';
+    return;
+  }
+  list.innerHTML = recent.map(d=>`
+    <div class="dosar-item" onclick="go('dosare',document.querySelectorAll('.tb-t')[8])">
+      <div class="di-ico">${d.tip.substring(0,4).toUpperCase()}</div>
+      <div>
+        <div class="di-name">${d.tip}${d.cad?' · '+d.cad:''}</div>
+        <div class="di-sub">${d.uat||'—'} ${d.jud?'· '+d.jud:''}</div>
+      </div>
+      <div class="di-r">
+        <span class="sb2 ${d.status==='finalizat'?'sb-d':'sb-p'}">${d.status==='finalizat'?'Finalizat':'În lucru'}</span>
+        <div class="di-date">${d.data}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ── RENDER DOSARE ──
+function renderDosare(filter='', tipFilter='') {
+  const total = state.dosare.length;
+  const active = state.dosare.filter(d=>d.status==='in-lucru').length;
+  const fin = state.dosare.filter(d=>d.status==='finalizat').length;
+  document.getElementById('dos-total').textContent = total;
+  document.getElementById('dos-active').textContent = active;
+  document.getElementById('dos-fin').textContent = fin;
+  document.getElementById('dos-space').textContent = Math.round(JSON.stringify(state.dosare).length/1024)+' KB';
+  const container = document.getElementById('dosare-full');
+  let list = state.dosare;
+  if(filter) list = list.filter(d=>(d.cad+d.uat+d.adr+d.tip).toLowerCase().includes(filter.toLowerCase()));
+  if(tipFilter) list = list.filter(d=>d.tip===tipFilter);
+  if(list.length===0){
+    container.innerHTML='<div style="padding:40px;text-align:center;font-size:11px;color:var(--t3);font-family:var(--mono)">'+(total===0?'Niciun dosar creat.<br><br>Apasă + Lucrare nouă pentru a crea primul dosar.':'Niciun rezultat pentru filtrele selectate.')+'</div>';
+    return;
+  }
+  container.innerHTML = list.map(d=>`
+    <div class="dosar-item">
+      <div class="di-ico" style="${d.status==='finalizat'?'background:var(--teal3);color:var(--teal)':''}">${d.tip.substring(0,4).toUpperCase()}</div>
+      <div style="flex:1">
+        <div class="di-name">${d.tip}${d.cad?' — '+d.cad:''}</div>
+        <div class="di-sub">${[d.uat,d.jud,d.adr].filter(Boolean).join(' · ')||'—'}</div>
+        ${d.obs?`<div style="font-size:10px;color:var(--t3);margin-top:2px;font-family:var(--mono)">${d.obs}</div>`:''}
+      </div>
+      <div class="di-r">
+        <span class="sb2 ${d.status==='finalizat'?'sb-d':'sb-p'}">${d.status==='finalizat'?'Finalizat':'În lucru'}</span>
+        <div class="di-date">${d.data}</div>
+        <div style="display:flex;gap:4px;margin-top:4px;justify-content:flex-end">
+          <button onclick="toggleStatus(${d.id})" style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid var(--ln2);background:none;color:var(--t2);cursor:pointer;font-family:var(--mono)">toggle status</button>
+          <button onclick="stergeDos(${d.id})" style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(255,92,92,.3);background:none;color:var(--red);cursor:pointer;font-family:var(--mono)">șterge</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function filterDosare(){
+  renderDosare(document.getElementById('dos-search').value, document.getElementById('dos-filter').value);
+}
+
+function toggleStatus(id){
+  const d = state.dosare.find(x=>x.id===id);
+  if(d){ d.status = d.status==='finalizat'?'in-lucru':'finalizat'; save(); renderDosare(); }
+}
+
+function stergeDos(id){
+  if(!confirm('Șterge dosarul definitiv?')) return;
+  state.dosare = state.dosare.filter(x=>x.id!==id);
+  save(); renderDosare(); renderDashboard();
+}
+
+function save(){ localStorage.setItem('at_dosare', JSON.stringify(state.dosare)); }
+
+// ── OCR SIMULATION ──
+const OCR_DATA = {
+  bi: {
+    fields: [
+      {id:'bi-cnp',   label:'CNP',              conf:97, val:'', placeholder:'ex: 1850416XXXXXX'},
+      {id:'bi-nume',  label:'Nume și prenume',   conf:98, val:'', placeholder:'ex: POPESCU ION'},
+      {id:'bi-dom',   label:'Domiciliu',         conf:92, val:'', placeholder:'ex: Str. Mihai Viteazu nr.12, Hunedoara'},
+      {id:'bi-serie', label:'Serie / Nr. CI',    conf:99, val:'', placeholder:'ex: HD 123456'},
+      {id:'bi-valid', label:'Valabil până',      conf:95, val:'', placeholder:'ex: 16.04.2031'},
+      {id:'bi-cnp2',  label:'CNP soț/soție',     conf:0,  val:'', placeholder:'dacă există co-proprietar'},
+      {id:'bi-nume2', label:'Nume co-proprietar',conf:0,  val:'', placeholder:'dacă există'},
+    ],
+    preview: `<div class="doc-sim"><div class="doc-sim-title">CARTE DE IDENTITATE · ROMÂNIA</div><div style="display:flex;gap:8px;margin-bottom:8px"><div style="width:45px;height:58px;background:var(--bg4);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--t3);font-family:var(--mono)">FOTO</div><div><div style="margin-bottom:4px">Nume: <span class="doc-highlight" id="hl-nume">POPESCU ION</span></div><div style="margin-bottom:4px">CNP: <span class="doc-highlight" id="hl-cnp">1850416XXXXXX</span></div><div style="margin-bottom:4px">Domiciliu: <span class="doc-highlight" id="hl-dom">Str. Mihai Viteazu 12</span></div><div>Valabil: <span class="doc-highlight" id="hl-val">16.04.2031</span></div></div></div><div style="font-size:9px;color:var(--t3);margin-top:6px;font-family:var(--mono)">MRZ: POPESCU&lt;&lt;ION&lt;&lt;&lt;&lt;&lt;&lt;</div></div>`
+  },
+  cf: {
+    fields: [
+      {id:'cf-nr',    label:'Nr. CF',            conf:99, val:'', placeholder:'ex: CF 45821'},
+      {id:'cf-cad',   label:'Nr. cadastral',     conf:98, val:'', placeholder:'ex: 34521/1'},
+      {id:'cf-uat',   label:'UAT / Localitate',  conf:97, val:'', placeholder:'ex: Hunedoara'},
+      {id:'cf-prop',  label:'Proprietar',        conf:95, val:'', placeholder:'ex: POPESCU ION'},
+      {id:'cf-sup',   label:'Suprafață act',     conf:96, val:'', placeholder:'ex: 2847 mp'},
+      {id:'cf-cat',   label:'Categorie folosință',conf:93,val:'', placeholder:'ex: Cc — curți construcții'},
+      {id:'cf-sarc',  label:'Sarcini / Ipoteci', conf:88, val:'', placeholder:'ex: Ipotecă BCR sau LIBER'},
+    ],
+    preview: `<div class="doc-sim"><div class="doc-sim-title">EXTRAS DE CARTE FUNCIARĂ</div><div style="margin-bottom:4px">CF nr: <span class="doc-highlight">45821</span> UAT <span class="doc-highlight">HUNEDOARA</span></div><div style="margin-bottom:4px">Nr. cad: <span class="doc-highlight">34521/1</span></div><div style="margin-bottom:4px">Proprietar: <span class="doc-highlight">POPESCU ION</span></div><div style="margin-bottom:4px">Suprafață: <span class="doc-highlight">2847 mp</span></div><div style="margin-bottom:4px">Categorie: <span class="doc-highlight">Cc</span></div><div style="font-size:9px;color:var(--t3);margin-top:6px">Sarcini: IPOTECĂ BCR</div></div>`
+  },
+  ct: {
+    fields: [
+      {id:'ct-vanz',  label:'Vânzător',          conf:94, val:'', placeholder:'ex: POPESCU ION'},
+      {id:'ct-cumpar',label:'Cumpărător',         conf:94, val:'', placeholder:'ex: IONESCU MARIA'},
+      {id:'ct-pret',  label:'Preț tranzacție',   conf:89, val:'', placeholder:'ex: 45000 EUR'},
+      {id:'ct-data',  label:'Data autentificării',conf:97, val:'', placeholder:'ex: 10.03.2024'},
+      {id:'ct-notar', label:'Notar public',       conf:91, val:'', placeholder:'ex: POPA ELENA BNP'},
+      {id:'ct-obj',   label:'Obiect contract',   conf:88, val:'', placeholder:'ex: teren intravilan'},
+    ],
+    preview: `<div class="doc-sim"><div class="doc-sim-title">CONTRACT VÂNZARE-CUMPĂRARE</div><div style="margin-bottom:4px">Vânzător: <span class="doc-highlight">POPESCU ION</span></div><div style="margin-bottom:4px">Cumpărător: <span class="doc-highlight">IONESCU MARIA</span></div><div style="margin-bottom:4px">Preț: <span class="doc-highlight">45.000 EUR</span></div><div style="margin-bottom:4px">Data: <span class="doc-highlight">10.03.2024</span></div><div>Notar: <span class="doc-highlight">POPA ELENA BNP</span></div></div>`
+  },
+  tp: {
+    fields:[
+      {id:'tp-nr',label:'Nr. titlu',conf:96,val:'',placeholder:''},
+      {id:'tp-prop',label:'Proprietar',conf:95,val:'',placeholder:''},
+      {id:'tp-sup',label:'Suprafață',conf:93,val:'',placeholder:''},
+      {id:'tp-cat',label:'Categorie folosință',conf:90,val:'',placeholder:''},
+    ],
+    preview:`<div class="doc-sim"><div class="doc-sim-title">TITLU DE PROPRIETATE</div><div>Nr: <span class="doc-highlight">12345/2001</span></div><div>Proprietar: <span class="doc-highlight">POPESCU ION</span></div><div>Suprafață: <span class="doc-highlight">2847 mp</span></div></div>`
+  },
+  ac: {
+    fields:[
+      {id:'ac-nr',label:'Nr. autorizație',conf:98,val:'',placeholder:''},
+      {id:'ac-ben',label:'Beneficiar',conf:95,val:'',placeholder:''},
+      {id:'ac-dat',label:'Data emitere',conf:97,val:'',placeholder:''},
+      {id:'ac-exp',label:'Valabil până',conf:96,val:'',placeholder:''},
+      {id:'ac-obj',label:'Obiect',conf:88,val:'',placeholder:''},
+    ],
+    preview:`<div class="doc-sim"><div class="doc-sim-title">AUTORIZAȚIE DE CONSTRUIRE</div><div>Nr: <span class="doc-highlight">247/2024</span></div><div>Beneficiar: <span class="doc-highlight">POPESCU ION</span></div><div>Emis: <span class="doc-highlight">15.04.2024</span></div></div>`
+  },
+  alt:{
+    fields:[{id:'alt-type',label:'Tip detectat',conf:72,val:'',placeholder:'detectat automat'},{id:'alt-c1',label:'Câmp 1',conf:80,val:'',placeholder:''},{id:'alt-c2',label:'Câmp 2',conf:75,val:'',placeholder:''}],
+    preview:`<div class="doc-sim"><div class="doc-sim-title">DOCUMENT NECUNOSCUT</div><div style="color:var(--t3);font-size:10px">AI analizează conținutul...</div></div>`
+  }
+};
+
+const OCR_VALS = {
+  bi: ['1850416XXXXXX','POPESCU ION','Str. Mihai Viteazu nr.12, Hunedoara','HD 123456','16.04.2031','',''],
+  cf: ['CF 45821','34521/1','Hunedoara','POPESCU ION și POPESCU MARIA','2.847 mp','Cc — curți construcții','Ipotecă BCR'],
+  ct: ['POPESCU ION','IONESCU MARIA','45.000 EUR','10.03.2024','POPA ELENA BNP','teren intravilan 2847mp'],
+  tp: ['12345/2001','POPESCU ION','2847 mp','Cc'],
+  ac: ['247/2024','POPESCU ION','15.04.2024','15.04.2026','construire locuință P+1'],
+  alt: ['Contract de comodat','POPESCU ION','Hunedoara 2024']
+};
+
+function simulateOCR(type){
+  const data = OCR_DATA[type];
+  if(!data) return;
+  const statusEl = document.getElementById(type+'-status');
+  const previewEl = document.getElementById(type+'-preview');
+  const confEl = document.getElementById(type+'-conf');
+  const fieldsEl = document.getElementById(type+'-fields');
+  const confBar = document.getElementById(type+'-conf-bar');
+  const confVal = document.getElementById(type+'-conf-val');
+  if(statusEl) { statusEl.className='dot d-load'; }
+  if(previewEl) previewEl.innerHTML='<div style="text-align:center;padding:20px"><div style="font-size:10px;color:var(--teal);font-family:var(--mono)">Procesare OCR local...</div><div style="width:120px;height:3px;background:var(--bg4);border-radius:2px;margin:10px auto;overflow:hidden"><div style="height:100%;background:var(--teal);animation:progAnim 1.5s ease-in-out infinite" id="ocr-prog"></div></div><div style="font-size:9px;color:var(--t3);font-family:var(--mono)">Tesseract 5.x · local · offline</div></div>';
+  const style = document.createElement('style');
+  style.textContent='@keyframes progAnim{0%{width:0%}50%{width:80%}100%{width:100%}}';
+  document.head.appendChild(style);
+  let progress = 0;
+  const interval = setInterval(()=>{
+    progress += Math.random()*15;
+    if(progress>=100){
+      clearInterval(interval);
+      progress=100;
+      setTimeout(()=>{
+        if(statusEl) statusEl.className='dot d-ok';
+        if(previewEl) previewEl.innerHTML=data.preview;
+        if(confEl) confEl.style.display='block';
+        const avgConf = Math.round(data.fields.filter(f=>f.conf>0).reduce((a,f)=>a+f.conf,0)/data.fields.filter(f=>f.conf>0).length);
+        if(confBar) { confBar.style.width=avgConf+'%'; if(avgConf<70)confBar.classList.add('low'); else if(avgConf<85)confBar.classList.add('med'); }
+        if(confVal) confVal.textContent=avgConf+'%';
+        renderExtractedFields(type, data, OCR_VALS[type]||[]);
+      },300);
+    }
+  },80);
+}
+
+function renderExtractedFields(type, data, vals){
+  const container = document.getElementById(type+'-fields');
+  if(!container) return;
+  container.innerHTML = data.fields.map((f,i)=>{
+    const val = vals[i]||'';
+    const conf = f.conf;
+    const cls = conf===0?'':conf>=90?'confirmed':'uncertain';
+    const confColor = conf===0?'var(--t3)':conf>=90?'var(--teal)':'var(--amber)';
+    return `<div class="ex-field ${cls}">
+      <div class="ef-label">
+        <span>${f.label}</span>
+        ${conf>0?`<span class="ef-conf" style="color:${confColor}">${conf}%</span>`:'<span style="font-size:9px;color:var(--t3);font-family:var(--mono)">manual</span>'}
+      </div>
+      <input class="ef-val" type="text" value="${val}" placeholder="${f.placeholder||''}" oninput="updateField('${type}','${f.id}',this.value)">
+    </div>`;
+  }).join('');
+}
+
+function updateField(type, id, val) {
+  if(state.currentDos){
+    if(!state.currentDos.documente) state.currentDos.documente=[];
+    const existing = state.currentDos.documente.find(d=>d.type===type);
+    if(existing) existing[id]=val;
+    else { const obj={type}; obj[id]=val; state.currentDos.documente.push(obj); }
+    save();
+  }
+}
+
+function handleFile(input, type){
+  const file = input.files[0];
+  if(!file) return;
+  const fn = document.getElementById(type+'-filename');
+  if(fn) fn.textContent = file.name;
+  const status = document.getElementById(type+'-status');
+  if(status) status.className='dot d-warn';
+  simulateOCR(type);
+}
+
+function simulateCamera(type){
+  alert('În aplicația desktop: se deschide camera web sau scanner-ul USB pentru captură directă.');
+}
+
+// ── DOC TABS ──
+function switchDocTab(btn, tabId){
+  document.querySelectorAll('.doc-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');
+  btn.classList.add('active');
+  const el = document.getElementById(tabId);
+  if(el) el.style.display='block';
+}
+
+// ── IMPORT SIMULATION ──
+function simulateImport(){
+  const pts = [
+    ['1001','C1','382145.234','283421.118','278.45','col NV'],
+    ['1002','C2','382192.877','283418.332','278.52','col NE'],
+    ['1003','C3','382195.441','283378.119','278.38','col SE'],
+    ['1004','C4','382148.223','283380.774','278.41','col SV'],
+    ['1005','DR','382141.009','283399.447','278.29','drum'],
+    ['1006','LZ','382170.112','283400.228','278.48','linie dezm.'],
+  ];
+  document.getElementById('pts-body').innerHTML = pts.map(p=>
+    `<tr><td>${p[0]}</td><td>${p[1]}</td><td>${p[2]}</td><td>${p[3]}</td><td>${p[4]}</td><td>${p[5]}</td></tr>`
+  ).join('');
+  document.getElementById('imp-sup').textContent='2.851 mp';
+  document.getElementById('imp-per').textContent='217.34 m';
+  document.getElementById('imp-diff').innerHTML='<span class="tag t-ok">+4mp · în toleranță</span>';
+  document.getElementById('h-sup').textContent='2.851';
+  document.getElementById('h-lot1').textContent='1.424';
+  document.getElementById('h-lot2').textContent='1.427';
+  document.getElementById('h-per').textContent='217';
+  if(state.currentDos){ state.currentDos.masuratori={pts:pts.length,sup:'2.851',per:'217.34'}; save(); }
+}
+
+// ── MAP ──
+document.addEventListener('mousemove',e=>{
+  const map=document.querySelector('.map-svg');
+  if(!map) return;
+  const r=map.getBoundingClientRect();
+  if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) return;
+  const x=((e.clientX-r.left)/r.width*820);
+  const y=((e.clientY-r.top)/r.height*360);
+  const sterX=(382000+x*0.5).toFixed(1);
+  const sterY=(283000+y*0.5).toFixed(1);
+  const co=document.getElementById('map-coord');
+  if(co) co.textContent=`X: ${sterX} · Y: ${sterY} · Stereo70`;
+});
 document.querySelectorAll('.ml-chk').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
-document.querySelectorAll('.csrc').forEach(c=>c.addEventListener('click',function(){
-  this.closest('.con-left,div')?.querySelectorAll('.csrc').forEach(x=>x.classList.remove('active'));
-  this.classList.add('active');
-}));
+
+// ── CONECTOR ──
 const SRCS=[
   {id:'ancpi',d:180,s:'ok'},{id:'eterra',d:340,s:'ok'},{id:'pug',d:490,s:'warn'},
   {id:'inhga',d:260,s:'ok'},{id:'natura',d:400,s:'ok'},{id:'cultura',d:460,s:'ok'},
   {id:'seismic',d:320,s:'ok'},{id:'dem',d:430,s:'ok'},{id:'osm',d:290,s:'ok'},
   {id:'geo',d:520,s:'ok'},{id:'anaf',d:390,s:'ok'},{id:'monof',d:570,s:'ok'}
 ];
+
 function runConector(){
-  const bar=document.getElementById('conProg');
+  const val = document.getElementById('conInput').value.trim();
+  const bar = document.getElementById('conProg');
   bar.style.width='0%';
+  document.getElementById('con-results').style.display='none';
+  document.getElementById('con-risks').style.display='none';
+  document.getElementById('con-geo').style.display='none';
+  document.getElementById('con-sup').textContent='—';
+  document.getElementById('con-cat').textContent='—';
+  document.getElementById('con-val').textContent='—';
+  document.getElementById('con-alerte').textContent='—';
   SRCS.forEach(s=>{
     const dot=document.getElementById('cdot-'+s.id);
     const src=document.getElementById('csrc-'+s.id);
-    if(dot)dot.className='tree-dot td-load';
+    if(dot)dot.className='dot d-load';
     if(src)src.classList.remove('active');
   });
   let done=0;
@@ -1151,15 +1247,52 @@ function runConector(){
     setTimeout(()=>{
       const dot=document.getElementById('cdot-'+s.id);
       const src=document.getElementById('csrc-'+s.id);
-      if(dot)dot.className='tree-dot td-'+s.s;
+      if(dot)dot.className='dot d-'+s.s;
       if(src)src.classList.add('active');
       done++;
       bar.style.width=Math.round(done/SRCS.length*100)+'%';
-      if(done===SRCS.length)setTimeout(()=>bar.style.width='0%',700);
+      if(done===SRCS.length){
+        setTimeout(()=>{
+          bar.style.width='0%';
+          if(val){
+            document.getElementById('con-sup').textContent='2.847';
+            document.getElementById('con-cat').textContent='Cc — curți';
+            document.getElementById('con-val').textContent='41.280';
+            document.getElementById('con-alerte').textContent='3';
+            document.getElementById('con-time').textContent='0.8s';
+            document.getElementById('con-prop').textContent='Date extrase din CF';
+            document.getElementById('con-supm').innerHTML='2.847 mp · 2.851 mp <span class="tag t-ok">în toleranță</span>';
+            document.getElementById('con-sarc').innerHTML='<span class="tag t-warn">Verifică CF</span>';
+            document.getElementById('con-risks-body').innerHTML=`
+              <div class="alert err"><div class="a-dot" style="background:var(--red)"></div><div class="a-txt"><strong>Zonă inundabilă P1% (INHGA)</strong> — ~18% din parcelă. Obligatoriu aviz Apele Române.</div></div>
+              <div class="alert warn"><div class="a-dot" style="background:var(--amber)"></div><div class="a-txt"><strong>Sit Natura 2000 la 140m</strong> — ROSPA0089. Verifică plan management.</div></div>
+              <div class="alert ok"><div class="a-dot" style="background:var(--teal)"></div><div class="a-txt"><strong>Risc seismic</strong> — Zona D, ag=0.10g. Risc redus.</div></div>`;
+            document.getElementById('con-results').style.display='block';
+            document.getElementById('con-risks').style.display='block';
+            document.getElementById('con-geo').style.display='grid';
+          }
+        },500);
+      }
     },s.d);
   });
 }
-document.getElementById('conInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')runConector()});
+
+document.getElementById('conInput').addEventListener('keydown',e=>{if(e.key==='Enter')runConector()});
+
+// ── JURIDIC ──
+function toggleJ(head){
+  const body=head.nextElementSibling;
+  const open=body.classList.toggle('open');
+  head.querySelector('span:last-child').textContent=open?'▲':'▼';
+}
+
+document.querySelectorAll('.csrc').forEach(c=>c.addEventListener('click',function(){
+  this.parentElement.querySelectorAll('.csrc').forEach(x=>x.classList.remove('active'));
+  this.classList.add('active');
+}));
+
+// ── INIT ──
+renderDashboard();
 </script>
 
 
